@@ -2,11 +2,24 @@ package user;
 
 public class User {
 
-	private String name, gender;
-	private double weight, height, age, waistcircum;
+	// activity is a daily life activity
+	private String name, gender, activity;
+	
+	//waistcircum
+	private double weight, height, waistcircum;
+	
+	// unit is Kcal
+	// references : https://authoritynutrition.com/how-many-calories-per-day/
+	private int calories, caloriesNeeded, age;
 	
 	public User(String name) {
 		this.name = name;
+	}
+	
+	public int caloriesNeeded(String gender, double weight, double height, int age, String activity) {
+		Calories cal = new Calories();
+		caloriesNeeded = cal.calculateCal();
+		return caloriesNeeded;
 	}
 	
 	public String getName() {
