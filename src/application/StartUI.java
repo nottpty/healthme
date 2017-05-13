@@ -22,7 +22,7 @@ public class StartUI extends JFrame implements Runnable {
 		initComponents();
 	}
 	
-	public void initComponents() {
+	private void initComponents() {
 		button = new JButton("START");
 		title = new JLabel("HealthMe", SwingConstants.CENTER);
 		

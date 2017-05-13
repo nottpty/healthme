@@ -12,8 +12,11 @@ public class User {
 	// references : https://authoritynutrition.com/how-many-calories-per-day/
 	private int calories, caloriesNeeded, age;
 	
-	public User(String name) {
+	public User(String name, String gender, String activity, int age) {
 		this.name = name;
+		this.gender = gender;
+		this.activity = activity;
+		this.age = age;
 	}
 	
 	

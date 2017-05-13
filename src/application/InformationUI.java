@@ -19,20 +19,22 @@ public class InformationUI extends JFrame implements Runnable {
 	private String name, gender, activity;
 	private int age;
 
+	private JFrame frame;
 	private JLabel ageLabel, nameLabel, genderLabel, activityLabel;
 	private JTextField nameTxt, ageTxt;
 	private JComboBox<String> genderBox, activityBox;
-	private JButton enterBtn;
+	private JButton enterBtn, backBtn;
 	
 	private User user;
 	
 	public InformationUI() {
-		this.setTitle("Basic Information");
-		this.setSize(800, 450);
+		frame = this;
+		frame.setTitle("Basic Information");
+		frame.setSize(800, 450);
 		initComponents();
 	}
 	
-	public void initComponents() {
+	private void initComponents() {
 		ageLabel = new JLabel("Age: ");
 		nameLabel = new JLabel("Name: ");
 		genderLabel = new JLabel("Gender: ");
@@ -40,6 +42,8 @@ public class InformationUI extends JFrame implements Runnable {
 		nameTxt = new JTextField(10);
 		ageTxt = new JTextField(5);
 		enterBtn = new JButton("ENTER");
+		// Not use yet!
+		backBtn = new JButton("BACK");
 		
 		String[] genderArr = {"Male", "Female"};
 		String[] activityArr = {"Sedentary", "Moderately Active", "Active"};
@@ -56,10 +60,10 @@ public class InformationUI extends JFrame implements Runnable {
 				activity = activityBox.getSelectedItem() + "";
 				
 				//Create User
-				user = new User(name);
-				user.setActivity(activity);
-				user.setGender(gender);
-				user.setAge(age);
+				user = new User(name, gender, activity, age);
+				CaloriesUI caloriesUI = new CaloriesUI(user);
+				frame.dispose();
+				caloriesUI.run();
 			}
 		});
 		
@@ -86,13 +90,13 @@ public class InformationUI extends JFrame implements Runnable {
 		bigPanel.add(panel3);
 		bigPanel.add(panel4);
 		bigPanel.add(panel5);
-		this.add(bigPanel);
+		frame.add(bigPanel);
 	}
 	
 	@Override
 	public void run() {
-		this.setVisible(true);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 }
