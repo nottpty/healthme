@@ -85,15 +85,15 @@ public class Calories {
 		else if (age == 6) {
 			if (gender.equalsIgnoreCase("Male")) {
 				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1200;
-				}
-
-				if (activity.equalsIgnoreCase("Moderately Active")) {
 					calories = 1400;
 				}
 
-				if (activity.equalsIgnoreCase("active")) {
+				if (activity.equalsIgnoreCase("Moderately Active")) {
 					calories = 1600;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 1800;
 				}
 			}
 
@@ -103,101 +103,403 @@ public class Calories {
 				}
 
 				if (activity.equalsIgnoreCase("moderately active")) {
-					calories = 1400;
+					calories = 1600;
 				}
 
 				if (activity.equalsIgnoreCase("active")) {
-					calories = 1600;
+					calories = 1800;
 				}
 			}
 		}
 
 		else if (age == 7) {
+			if (gender.equalsIgnoreCase("Male")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 1400;
+				}
 
+				if (activity.equalsIgnoreCase("Moderately Active")) {
+					calories = 1600;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2000;
+				}
+			}
+
+			if (gender.equalsIgnoreCase("Female")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 1400;
+				}
+
+				if (activity.equalsIgnoreCase("moderately active")) {
+					calories = 1600;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 1800;
+				}
+			}
 		}
 
-		else if (age == 8) {
+		else if (age >= 8 && age <= 10) {
+			if (gender.equalsIgnoreCase("Male")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 1600;
+				}
 
-		}
+				if (activity.equalsIgnoreCase("Moderately Active")) {
+					calories = 1800;
+				}
 
-		else if (age == 9) {
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2000;
+				}
+			}
 
-		}
+			if (gender.equalsIgnoreCase("Female")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 1400;
+				}
 
-		else if (age == 10) {
+				if (activity.equalsIgnoreCase("moderately active")) {
+					calories = 1600;
+				}
 
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 1800;
+				}
+			}
 		}
 
 		else if (age == 11) {
+			if (gender.equalsIgnoreCase("Male")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 1800;
+				}
 
+				if (activity.equalsIgnoreCase("Moderately Active")) {
+					calories = 2000;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2200;
+				}
+			}
+
+			if (gender.equalsIgnoreCase("Female")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 1600;
+				}
+
+				if (activity.equalsIgnoreCase("moderately active")) {
+					calories = 1800;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2000;
+				}
+			}
 		}
 
 		else if (age == 12) {
+			if (gender.equalsIgnoreCase("Male")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 1800;
+				}
 
+				if (activity.equalsIgnoreCase("Moderately Active")) {
+					calories = 2200;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2400;
+				}
+			}
+
+			if (gender.equalsIgnoreCase("Female")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 1600;
+				}
+
+				if (activity.equalsIgnoreCase("moderately active")) {
+					calories = 2000;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2200;
+				}
+			}
 		}
 
-		else if (age == 13) {
+		else if (age <= 13 && age >= 15) {
+			if (gender.equalsIgnoreCase("Male")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 2100;
+				}
 
+				if (activity.equalsIgnoreCase("Moderately Active")) {
+					calories = 2400;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2600;
+				}
+			}
+
+			if (gender.equalsIgnoreCase("Female")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 1700;
+				}
+
+				if (activity.equalsIgnoreCase("moderately active")) {
+					calories = 2000;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2200;
+				}
+			}
 		}
+		
+		else if (age <= 16 && age >= 18) {
+			if (gender.equalsIgnoreCase("Male")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 2400;
+				}
 
-		else if (age == 14) {
+				if (activity.equalsIgnoreCase("Moderately Active")) {
+					calories = 2800;
+				}
 
-		}
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 3200;
+				}
+			}
 
-		else if (age == 15) {
+			if (gender.equalsIgnoreCase("Female")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 1800;
+				}
 
-		}
+				if (activity.equalsIgnoreCase("moderately active")) {
+					calories = 2000;
+				}
 
-		else if (age == 16) {
-
-		}
-
-		else if (age == 17) {
-
-		}
-
-		else if (age == 18) {
-
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2400;
+				}
+			}
 		}
 
 		else if (age >= 19 && age <= 20) {
+			if (gender.equalsIgnoreCase("Male")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 2600;
+				}
 
+				if (activity.equalsIgnoreCase("Moderately Active")) {
+					calories = 2800;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 3000;
+				}
+			}
+
+			if (gender.equalsIgnoreCase("Female")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 2000;
+				}
+
+				if (activity.equalsIgnoreCase("moderately active")) {
+					calories = 2200;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2400;
+				}
+			}
 		}
 
 		else if (age >= 21 && age <= 25) {
+			if (gender.equalsIgnoreCase("Male")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 2400;
+				}
 
+				if (activity.equalsIgnoreCase("Moderately Active")) {
+					calories = 2800;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 3000;
+				}
+			}
+
+			if (gender.equalsIgnoreCase("Female")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 2000;
+				}
+
+				if (activity.equalsIgnoreCase("moderately active")) {
+					calories = 2200;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2400;
+				}
+			}
 		}
 
 		else if (age >= 26 && age <= 30) {
+			if (gender.equalsIgnoreCase("Male")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 2400;
+				}
 
+				if (activity.equalsIgnoreCase("Moderately Active")) {
+					calories = 2600;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 3000;
+				}
+			}
+
+			if (gender.equalsIgnoreCase("Female")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 1800;
+				}
+
+				if (activity.equalsIgnoreCase("moderately active")) {
+					calories = 2000;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2400;
+				}
+			}
 		}
 
-		else if (age >= 31 && age <= 35) {
+		else if (age >= 31 && age <= 40) {
+			if (gender.equalsIgnoreCase("Male")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 2400;
+				}
 
+				if (activity.equalsIgnoreCase("Moderately Active")) {
+					calories = 2600;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 3000;
+				}
+			}
+
+			if (gender.equalsIgnoreCase("Female")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 1800;
+				}
+
+				if (activity.equalsIgnoreCase("moderately active")) {
+					calories = 2000;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2200;
+				}
+			}
+		}
+		
+		else if (age >= 41 && age <= 50) {
+			if (gender.equalsIgnoreCase("Male")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 2200;
+				}
+
+				if (activity.equalsIgnoreCase("Moderately Active")) {
+					calories = 2600;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2800;
+				}
+			}
+
+			if (gender.equalsIgnoreCase("Female")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 1800;
+				}
+
+				if (activity.equalsIgnoreCase("moderately active")) {
+					calories = 2000;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2200;
+				}
+			}
 		}
 
-		else if (age >= 36 && age <= 40) {
+		else if (age >= 51 && age <= 60) {
+			if (gender.equalsIgnoreCase("Male")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 2200;
+				}
 
-		}
+				if (activity.equalsIgnoreCase("Moderately Active")) {
+					calories = 2400;
+				}
 
-		else if (age >= 41 && age <= 45) {
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2800;
+				}
+			}
 
-		}
+			if (gender.equalsIgnoreCase("Female")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 1600;
+				}
 
-		else if (age >= 46 && age <= 50) {
+				if (activity.equalsIgnoreCase("moderately active")) {
+					calories = 1800;
+				}
 
-		}
-
-		else if (age >= 51 && age <= 55) {
-
-		}
-
-		else if (age >= 56 && age <= 60) {
-
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2200;
+				}
+			}
 		}
 
 		else if (age >= 61) {
+			if (gender.equalsIgnoreCase("Male")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 2000;
+				}
 
+				if (activity.equalsIgnoreCase("Moderately Active")) {
+					calories = 2400;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2600;
+				}
+			}
+
+			if (gender.equalsIgnoreCase("Female")) {
+				if (activity.equalsIgnoreCase("Sedentary")) {
+					calories = 1600;
+				}
+
+				if (activity.equalsIgnoreCase("moderately active")) {
+					calories = 1800;
+				}
+
+				if (activity.equalsIgnoreCase("active")) {
+					calories = 2200;
+				}
+			}
 		}
 
 		return calories;
