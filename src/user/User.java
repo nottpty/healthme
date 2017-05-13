@@ -16,9 +16,10 @@ public class User {
 		this.name = name;
 	}
 	
-	public int caloriesNeeded(String gender, double weight, double height, int age, String activity) {
+	
+	public int caloriesNeeded() {
 		Calories cal = new Calories();
-		caloriesNeeded = cal.calculateCal();
+		caloriesNeeded = cal.calculateCal(gender, age, activity);
 		return caloriesNeeded;
 	}
 	
@@ -45,6 +46,14 @@ public class User {
 	public double getWaist() {
 		return this.waistcircum;
 	}
+	
+	public String getActivity() {
+		return this.activity;
+	}
+	
+	public int getCaloriesNeeded() {
+		return this.caloriesNeeded;
+	}
 
 	public void setName(String name) {
 		this.name = name;
@@ -62,11 +71,19 @@ public class User {
 		this.height = height;
 	}
 	
-	public void setAge(double age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 	
 	public void setWaist(double waist) {
 		this.waistcircum = waist;
+	}
+	
+	public void setActivity(String activity) {
+		this.activity = activity;
+	}
+	
+	public void setCaloriesNeeded(int caloriesNeed) {
+		this.caloriesNeeded = caloriesNeed;
 	}
 }

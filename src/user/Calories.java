@@ -1,5 +1,11 @@
 package user;
 
+/**
+ * Calories that needed per day.
+ * Data from https://www.cnpp.usda.gov/sites/default/files/usda_food_patterns/EstimatedCalorieNeedsPerDayTable.pdf
+ * @author molecuess
+ *
+ */
 public class Calories {
 
 	public int calculateCal(String gender, int age, String activity) {
