@@ -25,10 +25,10 @@ public class CaloriesUI extends JFrame implements Runnable {
 	
 	private void initComponents() {
 		caloriesNeedLabel = new JLabel("", SwingConstants.CENTER);
-		caloriesNeedLabel.setText(user.caloriesNeeded() + " ");
+		caloriesNeedLabel.setText(user.caloriesNeeded() + " KCal remaining");
 		
 		// Set font size
-		caloriesNeedLabel.setFont(caloriesNeedLabel.getFont().deriveFont(70f));
+		caloriesNeedLabel.setFont(caloriesNeedLabel.getFont().deriveFont(30f));
 		frame.add(caloriesNeedLabel);
 	}
 
