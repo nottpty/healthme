@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import user.User;
+import java.awt.Font;
 
 public class InformationUI extends JFrame implements Runnable {
 
@@ -36,20 +37,35 @@ public class InformationUI extends JFrame implements Runnable {
 	
 	private void initComponents() {
 		ageLabel = new JLabel("Age: ");
+		ageLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		ageLabel.setBounds(105, 115, 63, 75);
 		nameLabel = new JLabel("Name: ");
+		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		nameLabel.setBounds(106, 30, 115, 75);
 		genderLabel = new JLabel("Gender: ");
+		genderLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		genderLabel.setBounds(344, 102, 100, 100);
 		activityLabel = new JLabel("Activity: ");
+		activityLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		activityLabel.setBounds(105, 201, 100, 100);
 		nameTxt = new JTextField(10);
+		nameTxt.setBounds(191, 46, 363, 43);
 		ageTxt = new JTextField(5);
+		ageTxt.setBounds(191, 135, 113, 43);
 		enterBtn = new JButton("ENTER");
+		enterBtn.setBounds(555, 329, 100, 37);
 		// Not use yet!
 		backBtn = new JButton("BACK");
+		backBtn.setBounds(424, 329, 100, 37);
 		
 		String[] genderArr = {"Male", "Female"};
 		String[] activityArr = {"Sedentary", "Moderately Active", "Active"};
 		
 		genderBox = new JComboBox(genderArr);
+		genderBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		genderBox.setBounds(454, 135, 100, 43);
 		activityBox = new JComboBox(activityArr);
+		activityBox.setBounds(191, 234, 113, 43);
 		
 		enterBtn.addActionListener(new ActionListener() {
 			@Override
@@ -66,31 +82,18 @@ public class InformationUI extends JFrame implements Runnable {
 				frame.dispose();
 			}
 		});
+		getContentPane().setLayout(null);
 		
-		JPanel panel1 = new JPanel();
-		JPanel panel2 = new JPanel();
-		JPanel panel3 = new JPanel();
-		JPanel panel4 = new JPanel();
-		JPanel panel5 = new JPanel();
-		JPanel bigPanel = new JPanel();
-		
-		panel1.add(nameLabel);
-		panel1.add(nameTxt);
-		panel2.add(ageLabel);
-		panel2.add(ageTxt);
-		panel3.add(genderLabel);
-		panel3.add(genderBox);
-		panel4.add(activityLabel);
-		panel4.add(activityBox);
-		panel5.add(enterBtn);
-		
-		bigPanel.setLayout(new BoxLayout(bigPanel, BoxLayout.Y_AXIS));
-		bigPanel.add(panel1);
-		bigPanel.add(panel2);
-		bigPanel.add(panel3);
-		bigPanel.add(panel4);
-		bigPanel.add(panel5);
-		frame.add(bigPanel);
+		frame.getContentPane().add(activityBox);
+		frame.getContentPane().add(activityLabel);
+		frame.getContentPane().add(ageLabel);
+		frame.getContentPane().add(ageTxt);
+		frame.getContentPane().add(backBtn);
+		frame.getContentPane().add(enterBtn);
+		frame.getContentPane().add(genderBox);
+		frame.getContentPane().add(genderLabel);
+		frame.getContentPane().add(nameLabel);
+		frame.getContentPane().add(nameTxt);
 	}
 	
 	@Override
