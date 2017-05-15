@@ -1,5 +1,6 @@
 package application;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,9 +55,16 @@ public class InformationUI extends JFrame implements Runnable {
 		ageTxt.setBounds(191, 135, 113, 43);
 		enterBtn = new JButton("ENTER");
 		enterBtn.setBounds(555, 329, 100, 37);
+		
+		enterBtn.setBackground(new Color(59, 89, 182));
+        enterBtn.setForeground(Color.WHITE);
+        enterBtn.setFocusPainted(false);
 		// Not use yet!
 		backBtn = new JButton("BACK");
 		backBtn.setBounds(424, 329, 100, 37);
+		backBtn.setBackground(new Color(59, 89, 182));
+        backBtn.setForeground(Color.WHITE);
+        backBtn.setFocusPainted(false);
 		
 		String[] genderArr = {"Male", "Female"};
 		String[] activityArr = {"Sedentary", "Moderately Active", "Active"};

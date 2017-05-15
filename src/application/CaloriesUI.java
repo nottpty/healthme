@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 import javafx.scene.text.Font;
@@ -24,6 +25,7 @@ public class CaloriesUI extends JFrame implements Runnable {
 	private Food food;
 	
 	private JFrame frame;
+	private JTextArea textArea;
 	private JPanel panel;
 	private JComboBox<String> foodBox;
 	private JLabel caloriesNeedLabel;
@@ -41,6 +43,7 @@ public class CaloriesUI extends JFrame implements Runnable {
 		caloriesNeedLabel = new JLabel("", SwingConstants.CENTER);
 		addBtn = new JButton("ADD");
 		backBtn = new JButton("BACK");
+		textArea = new JTextArea();
 		
 		caloriesNeedLabel.setText(user.caloriesNeeded() + " KCal remaining");
 		
@@ -85,6 +88,7 @@ public class CaloriesUI extends JFrame implements Runnable {
 		panel.add(foodBox);
 		panel.add(addBtn);
 		panel.add(backBtn);
+		panel.add(textArea);
 		panel.add(caloriesNeedLabel);
 		frame.add(panel);
 	}

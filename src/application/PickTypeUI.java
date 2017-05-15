@@ -7,12 +7,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import user.User;
+import java.awt.Font;
 
 public class PickTypeUI extends JFrame implements Runnable{
 
 	private User user;
 	private JFrame frame;
-	private JButton caloriesBtn;
+	private JButton caloriesBtn, absiBtn;
 	
 	public PickTypeUI(User user) {
 		this.user = user;
@@ -23,6 +24,11 @@ public class PickTypeUI extends JFrame implements Runnable{
 	
 	private void initComponents() {
 		caloriesBtn = new JButton("CALORIES");
+		caloriesBtn.setFont(new Font("Tahoma", Font.PLAIN, 70));
+		caloriesBtn.setBounds(401, 0, 400, 411);
+		absiBtn = new JButton("ABSI");
+		absiBtn.setFont(new Font("Tahoma", Font.PLAIN, 70));
+		absiBtn.setBounds(0, 0, 400, 411);
 		
 		caloriesBtn.addActionListener(new ActionListener() {	
 			@Override
@@ -32,8 +38,10 @@ public class PickTypeUI extends JFrame implements Runnable{
 				frame.dispose();
 			}
 		});
+		getContentPane().setLayout(null);
 		
-		frame.add(caloriesBtn);
+		frame.getContentPane().add(absiBtn);
+		frame.getContentPane().add(caloriesBtn);
 	}
 	
 	@Override
