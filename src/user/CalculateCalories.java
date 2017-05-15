@@ -6,11 +6,11 @@ package user;
  * @author molecuess
  *
  */
-public class Calories {
+public class CalculateCalories {
 
 	public int calculateCal(String gender, int age, String activity) {
 		int calories = 0;
-		if (age == 2) {
+		if (age >= 1 && age <= 2) {
 			calories = 1000;
 		}
 
@@ -238,7 +238,7 @@ public class Calories {
 			}
 		}
 
-		else if (age <= 13 && age >= 15) {
+		else if (age >= 13 && age <= 15) {
 			if (gender.equalsIgnoreCase("Male")) {
 				if (activity.equalsIgnoreCase("Sedentary")) {
 					calories = 2100;
@@ -268,7 +268,7 @@ public class Calories {
 			}
 		}
 		
-		else if (age <= 16 && age >= 18) {
+		else if (age >= 16 && age <= 18) {
 			if (gender.equalsIgnoreCase("Male")) {
 				if (activity.equalsIgnoreCase("Sedentary")) {
 					calories = 2400;

@@ -21,7 +21,7 @@ public class User {
 	
 	
 	public int caloriesNeeded() {
-		Calories cal = new Calories();
+		CalculateCalories cal = new CalculateCalories();
 		caloriesNeeded = cal.calculateCal(gender, age, activity);
 		return caloriesNeeded;
 	}

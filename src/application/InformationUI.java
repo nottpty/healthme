@@ -61,9 +61,9 @@ public class InformationUI extends JFrame implements Runnable {
 				
 				//Create User
 				user = new User(name, gender, activity, age);
-				CaloriesUI caloriesUI = new CaloriesUI(user);
+				PickTypeUI ui = new PickTypeUI(user);
+				ui.run();
 				frame.dispose();
-				caloriesUI.run();
 			}
 		});
 		
