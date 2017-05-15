@@ -1,5 +1,7 @@
 package absi;
 
+import java.util.Arrays;
+
 /**
  * A Body Shape Index (ABSI) calculator takes your weight, height and waist
  * circumference and calculates the ABSI value.
@@ -11,6 +13,7 @@ public class Absi {
 	private double height, weight, waist_circum;
 	private int age;
 	private String gender;
+	private double zScore;
 
 	public void setInfo(String gender, int age, double height, double weight, double waist_circum) {
 		this.gender = gender;
@@ -22,7 +25,7 @@ public class Absi {
 
 	public double getValue() {
 		double bmi = weight / Math.pow((height / 100), 2);
-		double absiValue = waist_circum / (Math.cbrt(Math.pow(bmi, 2)) * Math.sqrt(height));
+		double absiValue = (waist_circum/100) / (Math.cbrt(Math.pow(bmi, 2)) * Math.sqrt(height/100));
 		return absiValue;
 	}
 
@@ -37,10 +40,29 @@ public class Absi {
 			return "High";
 		return "Very High";
 	}
+	
+	public void findZscore() {
+		CSVReader csvReader = new CSVReader("src/absi/zScore.txt");
+		String[] strArr = null;
+		double absiMean = 0;
+		double absiSd = 0;
+		while (csvReader.hasNext()) {
+			strArr = csvReader.next();
+			if (strArr[0].equals(age+"")){
+				break;
+			}
+		}
+		if(gender.equals("Male")) {
+			absiMean = Double.parseDouble(strArr[1]);
+			absiSd = Double.parseDouble(strArr[2]);
+		} else {
+			absiMean = Double.parseDouble(strArr[3]);
+			absiSd = Double.parseDouble(strArr[4]);
+		}
+		zScore = (getValue()-absiMean)/absiSd;
+	}
 
 	public double getZscore() {
-		// read the data from a text file in local storage
-		// male and female are not same result.
-		return 0.0;
+		return zScore;
 	}
 }
