@@ -17,7 +17,14 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class AbsiUI extends JFrame implements Observer{
+/**
+ * This is user interface for ABSI calculator. GUI of ABSI calculator can show
+ * about mortality risk level of user by using personal information of user.
+ * 
+ * @author Patinya Yongyai
+ *
+ */
+public class AbsiUI extends JFrame implements Observer {
 	private JTextField ageTextField;
 	private JTextField heightTextField;
 	private JTextField weightTextField;
@@ -32,15 +39,25 @@ public class AbsiUI extends JFrame implements Observer{
 	private JRadioButton maleRadioButton;
 	private JRadioButton femaleRadioButton;
 	private JLabel resultLabel;
-	private Panel panel6;
-	
+	private Panel resultPanel;
+
+	/**
+	 * Constructor to initialize this class and set default setting of GUI.
+	 * 
+	 * @param absi
+	 *            is a reference from a main method to initialize Absi class in
+	 *            this class.
+	 */
 	public AbsiUI(Absi absi) {
 		this.absi = absi;
 		this.setTitle("ABSI Calculator");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
 	}
-	
+
+	/**
+	 * To initialize all components.
+	 */
 	public void initComponents() {
 		maleRadioButton = new JRadioButton("Male");
 		maleRadioButton.setSelected(true);
@@ -62,32 +79,38 @@ public class AbsiUI extends JFrame implements Observer{
 		Panel panel3 = new Panel(new FlowLayout((int) LEFT_ALIGNMENT));
 		Panel panel4 = new Panel(new FlowLayout((int) LEFT_ALIGNMENT));
 		Panel panel5 = new Panel(new FlowLayout((int) LEFT_ALIGNMENT));
-		panel6 = new Panel(new BorderLayout());
+		resultPanel = new Panel(new BorderLayout());
 		Panel panel7 = new Panel(new BorderLayout());
-		panel6.setBackground(Color.WHITE);
+		resultPanel.setBackground(Color.WHITE);
 		this.setLayout(new GridLayout(7, 1));
 		maleRadioButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				femaleRadioButton.setSelected(false);
 			}
 		});
 		femaleRadioButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				maleRadioButton.setSelected(false);
 			}
 		});
 		calculateButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(maleRadioButton.isSelected()) {
-					absi.setInfo(maleRadioButton.getText(), Integer.parseInt(ageTextField.getText()), Double.parseDouble(heightTextField.getText()), Double.parseDouble(weightTextField.getText()), Double.parseDouble(waistCircumTextField.getText()));
+				if (maleRadioButton.isSelected()) {
+					absi.setInfo(maleRadioButton.getText(), Integer.parseInt(ageTextField.getText()),
+							Double.parseDouble(heightTextField.getText()),
+							Double.parseDouble(weightTextField.getText()),
+							Double.parseDouble(waistCircumTextField.getText()));
 				} else {
-					absi.setInfo(femaleRadioButton.getText(), Integer.parseInt(ageTextField.getText()), Double.parseDouble(heightTextField.getText()), Double.parseDouble(weightTextField.getText()), Double.parseDouble(waistCircumTextField.getText()));
+					absi.setInfo(femaleRadioButton.getText(), Integer.parseInt(ageTextField.getText()),
+							Double.parseDouble(heightTextField.getText()),
+							Double.parseDouble(weightTextField.getText()),
+							Double.parseDouble(waistCircumTextField.getText()));
 				}
 			}
 		});
@@ -102,31 +125,37 @@ public class AbsiUI extends JFrame implements Observer{
 		panel4.add(weightTextField);
 		panel5.add(waistCircumLabel);
 		panel5.add(waistCircumTextField);
-		panel6.add(resultLabel);
+		resultPanel.add(resultLabel);
 		panel7.add(calculateButton, BorderLayout.CENTER);
 		this.add(panel1);
 		this.add(panel2);
 		this.add(panel3);
 		this.add(panel4);
 		this.add(panel5);
-		this.add(panel6);
+		this.add(resultPanel);
 		this.add(panel7);
 		this.pack();
 	}
-	
+
+	/**
+	 * To show GUI of this object.
+	 */
 	public void run() {
 		this.setVisible(true);
 	}
 
+	/**
+	 * Update UI when information of user was updated.
+	 */
 	@Override
 	public void update(Observable o, Object arg) {
 		resultLabel.setText(absi.getMortalityRisk());
-		if(absi.getMortalityRisk().equals("Very Low") || absi.getMortalityRisk().equals("Low"))
-			panel6.setBackground(Color.GREEN);
-		else if(absi.getMortalityRisk().equals("Average"))
-			panel6.setBackground(Color.YELLOW);
-		else if(absi.getMortalityRisk().equals("High") || absi.getMortalityRisk().equals("Very High"))
-			panel6.setBackground(Color.RED);
+		if (absi.getMortalityRisk().equals("Very Low") || absi.getMortalityRisk().equals("Low"))
+			resultPanel.setBackground(Color.GREEN);
+		else if (absi.getMortalityRisk().equals("Average"))
+			resultPanel.setBackground(Color.YELLOW);
+		else if (absi.getMortalityRisk().equals("High") || absi.getMortalityRisk().equals("Very High"))
+			resultPanel.setBackground(Color.RED);
 	}
 
 }

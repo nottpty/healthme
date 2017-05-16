@@ -16,12 +16,18 @@ public class Absi extends Observable {
 	private double zScore;
 
 	/**
+	 * Set information of user to calculate mortality risk level.
 	 * 
 	 * @param gender
+	 *            Gender of user
 	 * @param age
+	 *            Age of user
 	 * @param height
+	 *            Height of user
 	 * @param weight
+	 *            Weight of user
 	 * @param waist_circum
+	 *            Waist circumference of user
 	 */
 	public void setInfo(String gender, int age, double height, double weight, double waist_circum) {
 		this.gender = gender;
@@ -29,13 +35,15 @@ public class Absi extends Observable {
 		this.height = height;
 		this.weight = weight;
 		this.waist_circum = waist_circum;
+		findZscore();
 		this.setChanged();
 		this.notifyObservers();
 	}
 
 	/**
+	 * Get ABSI value
 	 * 
-	 * @return
+	 * @return ABSI value
 	 */
 	public double getValue() {
 		double bmi = weight / Math.pow((height / 100), 2);
@@ -44,8 +52,9 @@ public class Absi extends Observable {
 	}
 
 	/**
+	 * Get mortality risk level of user.
 	 * 
-	 * @return
+	 * @return mortality risk level of user
 	 */
 	public String getMortalityRisk() {
 		if (getZscore() < -0.868)
@@ -60,7 +69,7 @@ public class Absi extends Observable {
 	}
 
 	/**
-	 * 
+	 * Find ABSI z score from a text file by checking age of user with ABSI z score table.
 	 */
 	public void findZscore() {
 		Reader csvReader = new Reader("src/absi/zScore.txt");
@@ -81,14 +90,15 @@ public class Absi extends Observable {
 			absiSd = Double.parseDouble(strArr[4]);
 		}
 		zScore = (getValue() - absiMean) / absiSd;
+		csvReader.close();
 	}
 
 	/**
+	 * Get ABSI z score.
 	 * 
-	 * @return
+	 * @return ABSI z score
 	 */
 	public double getZscore() {
-		findZscore();
 		return zScore;
 	}
 }

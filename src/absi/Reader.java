@@ -9,6 +9,12 @@ import java.io.InputStreamReader;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Reader for reading an information from zScore.txt
+ * 
+ * @author Patinya Yongyai
+ *
+ */
 public class Reader implements Iterator<String[]> {
 	private char delimiter = ',';
 	private BufferedReader bufferReader;
@@ -24,6 +30,9 @@ public class Reader implements Iterator<String[]> {
 			bufferReader = new BufferedReader(new InputStreamReader(inStream));
 	}
 
+	/**
+	 * To check the data still ready to read or not.
+	 */
 	@Override
 	public boolean hasNext() {
 		try {
@@ -37,6 +46,9 @@ public class Reader implements Iterator<String[]> {
 		return false;
 	}
 
+	/**
+	 * To get the data from the next line of a text file.
+	 */
 	@Override
 	public String[] next() {
 		if (hasNext()) {
@@ -49,6 +61,14 @@ public class Reader implements Iterator<String[]> {
 			}
 		}
 		throw new NoSuchElementException();
+	}
+	
+	public void close() {
+		try {
+			bufferReader.close();
+		} catch (IOException e) {
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 
 }
