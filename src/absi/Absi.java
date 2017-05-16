@@ -15,6 +15,14 @@ public class Absi {
 	private String gender;
 	private double zScore;
 
+	/**
+	 * 
+	 * @param gender
+	 * @param age
+	 * @param height
+	 * @param weight
+	 * @param waist_circum
+	 */
 	public void setInfo(String gender, int age, double height, double weight, double waist_circum) {
 		this.gender = gender;
 		this.age = age;
@@ -23,12 +31,20 @@ public class Absi {
 		this.waist_circum = waist_circum;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public double getValue() {
 		double bmi = weight / Math.pow((height / 100), 2);
 		double absiValue = (waist_circum/100) / (Math.cbrt(Math.pow(bmi, 2)) * Math.sqrt(height/100));
 		return absiValue;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getMortalityRisk() {
 		if (getZscore() < -0.868)
 			return "Very Low";
@@ -40,9 +56,12 @@ public class Absi {
 			return "High";
 		return "Very High";
 	}
-	
+
+	/**
+	 * 
+	 */
 	public void findZscore() {
-		CSVReader csvReader = new CSVReader("src/absi/zScore.txt");
+		Reader csvReader = new Reader("src/absi/zScore.txt");
 		String[] strArr = null;
 		double absiMean = 0;
 		double absiSd = 0;
@@ -62,6 +81,10 @@ public class Absi {
 		zScore = (getValue()-absiMean)/absiSd;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public double getZscore() {
 		return zScore;
 	}

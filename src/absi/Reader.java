@@ -9,11 +9,11 @@ import java.io.InputStreamReader;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class CSVReader implements Iterator<String[]> {
+public class Reader implements Iterator<String[]> {
 	private char delimiter = ',';
 	private BufferedReader bufferReader;
 
-	public CSVReader(String name) {
+	public Reader(String name) {
 		InputStream inStream = null;
 		try {
 			inStream = new FileInputStream(name);
