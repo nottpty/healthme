@@ -47,9 +47,9 @@ public class AbsiUI extends JFrame implements Observer{
 		femaleRadioButton = new JRadioButton("Female");
 		genderLabel = new JLabel("Gender: ");
 		ageLabel = new JLabel("Age: ");
-		heightLabel = new JLabel("Height: ");
-		weightLabel = new JLabel("Weight: ");
-		waistCircumLabel = new JLabel("Waist circumference: ");
+		heightLabel = new JLabel("Height (cm): ");
+		weightLabel = new JLabel("Weight (kg): ");
+		waistCircumLabel = new JLabel("Waist circumference (cm): ");
 		ageTextField = new JTextField(3);
 		heightTextField = new JTextField(3);
 		weightTextField = new JTextField(3);
@@ -58,10 +58,10 @@ public class AbsiUI extends JFrame implements Observer{
 		resultLabel = new JLabel("", (int) CENTER_ALIGNMENT);
 		resultLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		Panel panel1 = new Panel(new FlowLayout());
-		Panel panel2 = new Panel(new FlowLayout());
-		Panel panel3 = new Panel(new FlowLayout());
-		Panel panel4 = new Panel(new FlowLayout());
-		Panel panel5 = new Panel(new FlowLayout());
+		Panel panel2 = new Panel(new FlowLayout((int) LEFT_ALIGNMENT));
+		Panel panel3 = new Panel(new FlowLayout((int) LEFT_ALIGNMENT));
+		Panel panel4 = new Panel(new FlowLayout((int) LEFT_ALIGNMENT));
+		Panel panel5 = new Panel(new FlowLayout((int) LEFT_ALIGNMENT));
 		panel6 = new Panel(new BorderLayout());
 		Panel panel7 = new Panel(new BorderLayout());
 		panel6.setBackground(Color.WHITE);
