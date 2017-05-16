@@ -1,5 +1,7 @@
 package application;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
@@ -25,11 +28,11 @@ public class CaloriesUI extends JFrame implements Runnable {
 	private Food food;
 	
 	private JFrame frame;
-	private JTextArea textArea;
+	private JTextArea leftTextArea, rightTextArea;
 	private JPanel panel;
-	private JComboBox<String> foodBox;
-	private JLabel caloriesNeedLabel;
-	private JButton addBtn, backBtn;
+	private JComboBox<String> foodBox, thaifoodBox;
+	private JLabel caloriesNeedLabel, interFoodLabel, thaiFoodLabel;
+	private JButton addBtn, addThaiBtn, backBtn;
 	
 	public CaloriesUI(User user) {
 		this.user = user;
@@ -40,24 +43,39 @@ public class CaloriesUI extends JFrame implements Runnable {
 	}
 	
 	private void initComponents() {
-		caloriesNeedLabel = new JLabel("", SwingConstants.CENTER);
+		caloriesNeedLabel = new JLabel("");
+		interFoodLabel = new JLabel("International Food", SwingConstants.CENTER);
+		thaiFoodLabel = new JLabel("Thai food", SwingConstants.CENTER);
 		addBtn = new JButton("ADD");
+		addThaiBtn = new JButton("ADD");
 		backBtn = new JButton("BACK");
-		textArea = new JTextArea();
+		
+		// Set text area
+		leftTextArea = new JTextArea();
+		rightTextArea = new JTextArea();
+		leftTextArea.setSize(600, 200);
+		rightTextArea.setSize(200, 200);
+		leftTextArea.setText("Food name :\n");
+		rightTextArea.setText("Calories :\n");
+		leftTextArea.setFont(leftTextArea.getFont().deriveFont(25f));
+		rightTextArea.setFont(leftTextArea.getFont().deriveFont(25f));
 		
 		caloriesNeedLabel.setText(user.caloriesNeeded() + " KCal remaining");
 		
 		food = new Food();
 		try {
 			food.putFood();
+			food.putThaiFood();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 		Set<String> keys = food.getFood().keySet();
+		Set<String> keyThai = food.getThaiFood().keySet();
 		
 		String[] foodArr = keys.toArray(new String[keys.size()]);
+		String[] thaifoodArr = keyThai.toArray(new String[keyThai.size()]);
+		thaifoodBox = new JComboBox<String>(thaifoodArr);
 		foodBox = new JComboBox<String>(foodArr);
-		
 		
 		// Set font size
 		caloriesNeedLabel.setFont(caloriesNeedLabel.getFont().deriveFont(30f));
@@ -71,6 +89,21 @@ public class CaloriesUI extends JFrame implements Runnable {
 				int updateCal = user.getCaloriesNeeded() - calories;
 				user.setCaloriesNeeded(updateCal);
 				caloriesNeedLabel.setText(updateCal + " KCal remaining");
+				leftTextArea.append(foodBox.getSelectedItem()+"\n");
+				rightTextArea.append(calories + " KCal\n");
+			}
+		});
+		
+		addThaiBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String foodSelected = thaifoodBox.getSelectedItem() + "";
+				int calories = food.getThaiFood().get(foodSelected);
+				int updateCal = user.getCaloriesNeeded() - calories;
+				user.setCaloriesNeeded(updateCal);
+				caloriesNeedLabel.setText(updateCal + " KCal remaining");
+				leftTextArea.append(thaifoodBox.getSelectedItem()+"\n");
+				rightTextArea.append(calories + " KCal\n");
 			}
 		});
 		
@@ -84,11 +117,40 @@ public class CaloriesUI extends JFrame implements Runnable {
 		});
 		
 		panel = new JPanel();
+		JPanel foodListPanel = new JPanel();
+		JPanel thaifoodListPanel = new JPanel();
+		JPanel textAreaPanel = new JPanel();
+		JScrollPane leftscroll;
+		JScrollPane rightscroll;
+		
+		foodListPanel.setLayout(new FlowLayout());
+		thaifoodListPanel.setLayout(new FlowLayout());
+		textAreaPanel.setLayout(new BoxLayout(textAreaPanel, BoxLayout.X_AXIS));
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		panel.add(foodBox);
-		panel.add(addBtn);
-		panel.add(backBtn);
-		panel.add(textArea);
+		
+		foodListPanel.add(interFoodLabel);
+		foodListPanel.add(foodBox);
+		foodListPanel.add(addBtn);
+		panel.add(foodListPanel);
+		
+		thaifoodListPanel.add(thaiFoodLabel);
+		thaifoodListPanel.add(thaifoodBox);
+		thaifoodListPanel.add(addThaiBtn);
+		panel.add(thaifoodListPanel);
+		
+		
+		leftscroll = new JScrollPane(leftTextArea,
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+	            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		rightscroll = new JScrollPane(rightTextArea,
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+	            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		leftscroll.setPreferredSize(new Dimension(600, 200));
+		rightscroll.setPreferredSize(new Dimension(200, 200));
+		
+		textAreaPanel.add(leftscroll);
+		textAreaPanel.add(rightscroll);
+		panel.add(textAreaPanel);
 		panel.add(caloriesNeedLabel);
 		frame.add(panel);
 	}
