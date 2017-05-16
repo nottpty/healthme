@@ -1,6 +1,6 @@
 package absi;
 
-import java.util.Arrays;
+import java.util.Observable;
 
 /**
  * A Body Shape Index (ABSI) calculator takes your weight, height and waist
@@ -9,7 +9,7 @@ import java.util.Arrays;
  * @author Patinya Yongyai
  *
  */
-public class Absi {
+public class Absi extends Observable {
 	private double height, weight, waist_circum;
 	private int age;
 	private String gender;
@@ -29,6 +29,8 @@ public class Absi {
 		this.height = height;
 		this.weight = weight;
 		this.waist_circum = waist_circum;
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	/**
@@ -37,7 +39,7 @@ public class Absi {
 	 */
 	public double getValue() {
 		double bmi = weight / Math.pow((height / 100), 2);
-		double absiValue = (waist_circum/100) / (Math.cbrt(Math.pow(bmi, 2)) * Math.sqrt(height/100));
+		double absiValue = (waist_circum / 100) / (Math.cbrt(Math.pow(bmi, 2)) * Math.sqrt(height / 100));
 		return absiValue;
 	}
 
@@ -67,18 +69,18 @@ public class Absi {
 		double absiSd = 0;
 		while (csvReader.hasNext()) {
 			strArr = csvReader.next();
-			if (strArr[0].equals(age+"")){
+			if (strArr[0].equals(age + "")) {
 				break;
 			}
 		}
-		if(gender.equals("Male")) {
+		if (gender.equals("Male")) {
 			absiMean = Double.parseDouble(strArr[1]);
 			absiSd = Double.parseDouble(strArr[2]);
 		} else {
 			absiMean = Double.parseDouble(strArr[3]);
 			absiSd = Double.parseDouble(strArr[4]);
 		}
-		zScore = (getValue()-absiMean)/absiSd;
+		zScore = (getValue() - absiMean) / absiSd;
 	}
 
 	/**
@@ -86,6 +88,7 @@ public class Absi {
 	 * @return
 	 */
 	public double getZscore() {
+		findZscore();
 		return zScore;
 	}
 }
