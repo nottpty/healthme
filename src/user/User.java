@@ -19,6 +19,8 @@ public class User {
 		this.gender = gender;
 		this.activity = activity;
 		this.age = age;
+		calories = 0;
+		caloriesNeeded = 0;
 	}
 	
 	
@@ -94,5 +96,9 @@ public class User {
 	
 	public void setCaloriesNeeded(int caloriesNeed) {
 		this.caloriesNeeded = caloriesNeed;
+	}
+	
+	public void setCalories(int calories) {
+		this.calories = calories;
 	}
 }

@@ -53,8 +53,8 @@ public class PickTypeUI extends JFrame implements Runnable{
 		
 		nameLabel.setPreferredSize(new Dimension(150, 100));
 		ageLabel.setPreferredSize(new Dimension(100, 100));
-		genderLabel.setPreferredSize(new Dimension(150, 100));
-		todayCaloriesLabel.setPreferredSize(new Dimension(120, 100));
+		genderLabel.setPreferredSize(new Dimension(100, 100));
+		todayCaloriesLabel.setPreferredSize(new Dimension(150, 100));
 		weightLabel.setPreferredSize(new Dimension(100, 100));
 		heightLabel.setPreferredSize(new Dimension(100, 100));
 		caloriesBtn.setPreferredSize(new Dimension(350, 200));
@@ -71,7 +71,7 @@ public class PickTypeUI extends JFrame implements Runnable{
 		nameLabel.setText("Username: " + user.getName());
 		ageLabel.setText("Age: " + user.getAge() + "");
 		genderLabel.setText("Gender: " + user.getGender());
-		todayCaloriesLabel.setText("Calories: ");
+		todayCaloriesLabel.setText("Calories: " + user.getCalories() + "/" + user.getCaloriesNeeded());
 		weightLabel.setText("Weight: " + user.getWeight());
 		heightLabel.setText("Height: " + user.getHeight());
 		

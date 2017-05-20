@@ -24,7 +24,7 @@ public class Food {
 	}
 	
 	public void putFood() throws IOException {
-		InputStream inputStream = new FileInputStream("src/user/food.txt");
+		InputStream inputStream = new FileInputStream("src/calories/food.txt");
 		InputStreamReader reader = new InputStreamReader(inputStream);
 		BufferedReader br = new BufferedReader(reader);
 		
@@ -48,7 +48,7 @@ public class Food {
 	}
 	
 	public void putThaiFood() throws IOException {
-		InputStream inputStream = new FileInputStream("src/user/Thaifood.txt");
+		InputStream inputStream = new FileInputStream("src/calories/Thaifood.txt");
 		InputStreamReader reader = new InputStreamReader(inputStream);
 		BufferedReader br = new BufferedReader(reader);
 		

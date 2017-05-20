@@ -34,8 +34,12 @@ public class CaloriesUI extends JFrame implements Runnable {
 	private JLabel caloriesNeedLabel, interFoodLabel, thaiFoodLabel;
 	private JButton addBtn, addThaiBtn, backBtn;
 	
+	// All calories that been added.
+	private int totalCalories;
+	
 	public CaloriesUI(User user) {
 		this.user = user;
+		totalCalories = user.getCalories();
 		frame = this;
 		frame.setTitle("HealthME");
 		frame.setSize(800, 450);
@@ -86,6 +90,9 @@ public class CaloriesUI extends JFrame implements Runnable {
 			public void actionPerformed(ActionEvent e) {
 				String foodSelected = foodBox.getSelectedItem() + "";
 				int calories = food.getFood().get(foodSelected);
+				
+				// Update total calories that eaten.
+				totalCalories += calories;
 				int updateCal = user.getCaloriesNeeded() - calories;
 				user.setCaloriesNeeded(updateCal);
 				caloriesNeedLabel.setText(updateCal + " KCal remaining");
@@ -99,6 +106,9 @@ public class CaloriesUI extends JFrame implements Runnable {
 			public void actionPerformed(ActionEvent e) {
 				String foodSelected = thaifoodBox.getSelectedItem() + "";
 				int calories = food.getThaiFood().get(foodSelected);
+				
+				// Update total calories that eaten.
+				totalCalories += calories;
 				int updateCal = user.getCaloriesNeeded() - calories;
 				user.setCaloriesNeeded(updateCal);
 				caloriesNeedLabel.setText(updateCal + " KCal remaining");
@@ -110,6 +120,7 @@ public class CaloriesUI extends JFrame implements Runnable {
 		backBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				user.setCalories(totalCalories);
 				PickTypeUI ui = new PickTypeUI(user);
 				ui.run();
 				frame.dispose();
