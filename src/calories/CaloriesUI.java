@@ -1,6 +1,7 @@
 package calories;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -65,6 +66,8 @@ public class CaloriesUI extends JFrame implements Runnable {
 		rightTextArea.setFont(leftTextArea.getFont().deriveFont(25f));
 		
 		caloriesNeedLabel.setText(user.caloriesNeeded() + " KCal remaining");
+		caloriesNeedLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		backBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		food = new Food();
 		try {
