@@ -19,6 +19,14 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
+/**
+ * A page that show information of user, user can update their information and can pick
+ * an absi page or calories page.
+ * 
+ * @author Narut Poovorakit
+ *
+ * @version 20.05.2017
+ */
 public class PickTypeUI extends JFrame implements Runnable{
 
 	private User user;
@@ -26,6 +34,10 @@ public class PickTypeUI extends JFrame implements Runnable{
 	private JLabel nameLabel, ageLabel, genderLabel, todayCaloriesLabel, weightLabel, heightLabel;
 	private JButton caloriesBtn, absiBtn, editUserBtn;
 	
+	/**
+	 * Create UI
+	 * @param user is a given user with name, age and gender
+	 */
 	public PickTypeUI(User user) {
 		this.user = user;
 		frame = this;

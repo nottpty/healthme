@@ -16,6 +16,13 @@ import javax.swing.JTextField;
 import user.User;
 import java.awt.Font;
 
+/**
+ * A page that can update a basic information of user.
+ * 
+ * @author Narut Poovorakit
+ *
+ * @version 20.05.2017
+ */
 public class EditUserUI extends JFrame implements Runnable {
 
 	private JFrame frame;
@@ -25,6 +32,9 @@ public class EditUserUI extends JFrame implements Runnable {
 	private JComboBox<String> genderBox;
 	private JButton saveBtn;
 	
+	/**
+	 * Create UI with given user
+	 */
 	public EditUserUI(User user) {
 		frame = this;
 		this.user = user;

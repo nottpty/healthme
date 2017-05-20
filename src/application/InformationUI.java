@@ -16,6 +16,14 @@ import javax.swing.JTextField;
 import user.User;
 import java.awt.Font;
 
+/**
+ * A page that need user to fill their basic information.
+ * 
+ * @author Narut Poovorakit
+ * 
+ * @version 20.05.2017
+ *
+ */
 public class InformationUI extends JFrame implements Runnable {
 
 	private String name, gender, activity;
@@ -29,6 +37,9 @@ public class InformationUI extends JFrame implements Runnable {
 	
 	private User user;
 	
+	/**
+	 * Create page
+	 */
 	public InformationUI() {
 		frame = this;
 		frame.setTitle("Basic Information");

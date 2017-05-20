@@ -23,6 +23,14 @@ import application.PickTypeUI;
 import javafx.scene.text.Font;
 import user.User;
 
+/**
+ * A user interface that show calories by adding food in the list
+ * 
+ * @author Narut Poovorakit
+ * 
+ * @version 20.05.2017
+ *
+ */
 public class CaloriesUI extends JFrame implements Runnable {
 
 	private User user;
@@ -38,6 +46,10 @@ public class CaloriesUI extends JFrame implements Runnable {
 	// All calories that been added.
 	private int totalCalories;
 	
+	/**
+	 * Create calories user interface.
+	 * @param user is a given user with information.
+	 */
 	public CaloriesUI(User user) {
 		this.user = user;
 		totalCalories = user.getCalories();
@@ -47,6 +59,9 @@ public class CaloriesUI extends JFrame implements Runnable {
 		initComponents();
 	}
 	
+	/**
+	 * Create and update component
+	 */
 	private void initComponents() {
 		caloriesNeedLabel = new JLabel("");
 		interFoodLabel = new JLabel("International Food", SwingConstants.CENTER);

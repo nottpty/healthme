@@ -12,17 +12,31 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * Food that contains name and categories categorized into Thai food and International food.
+ * @author Narut Poovorakit
+ * 
+ * @version 20.05.2017
+ *
+ */
 public class Food {
 	
 	private int Calories;
 	private String name;
 	private Map<String, Integer> food, thaifood;
 	
+	/**
+	 * Create food in map.
+	 */
 	public Food() {
 		food = new HashMap<String, Integer>();
 		thaifood = new HashMap<String, Integer>();
 	}
 	
+	/**
+	 * Put all list of food from file into a map.
+	 * @throws IOException
+	 */
 	public void putFood() throws IOException {
 		InputStream inputStream = new FileInputStream("src/calories/food.txt");
 		InputStreamReader reader = new InputStreamReader(inputStream);
@@ -47,6 +61,10 @@ public class Food {
 		br.close();
 	}
 	
+	/**
+	 * Put all list of food from file into a map.
+	 * @throws IOException
+	 */
 	public void putThaiFood() throws IOException {
 		InputStream inputStream = new FileInputStream("src/calories/Thaifood.txt");
 		InputStreamReader reader = new InputStreamReader(inputStream);
@@ -71,10 +89,18 @@ public class Food {
 		br.close();
 	}
 	
+	/**
+	 * Get an international food map.
+	 * @return a map of international food containing name and calories.
+	 */
 	public Map<String, Integer> getFood() {
 		return this.food;
 	}
 	
+	/**
+	 * Get a thai food map.
+	 * @return a map of thai food containing name and calories.
+	 */
 	public Map<String, Integer> getThaiFood() {
 		return this.thaifood;
 	}

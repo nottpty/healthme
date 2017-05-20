@@ -1,13 +1,21 @@
 package calories;
 
 /**
- * Calories that needed per day.
+ * Calculate calories that needed per day.
  * Data from https://www.cnpp.usda.gov/sites/default/files/usda_food_patterns/EstimatedCalorieNeedsPerDayTable.pdf
- * @author molecuess
+ * @author Narut Poovorakit
  *
+ * @version 20.05.2017
  */
 public class CalculateCalories {
 
+	/**
+	 * Calculate a needed calories of user each day.
+	 * @param gender is a given gender (male, female)
+	 * @param age is a given age
+	 * @param activity is a given activity (sedentary, moderate, active)
+	 * @return a result of calories needed per day.
+	 */
 	public int calculateCal(String gender, int age, String activity) {
 		int calories = 0;
 		if (age >= 1 && age <= 2) {

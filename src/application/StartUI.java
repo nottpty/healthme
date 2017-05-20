@@ -10,12 +10,23 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 
+/**
+ * A start page of the application
+ * 
+ * @author Narut Poovorakit
+ * 
+ * @version 20.05.2017
+ *
+ */
 public class StartUI extends JFrame implements Runnable {
 	
 	private JButton button;
 	private JLabel title;
 	private JFrame frame;
 	
+	/**
+	 * Create UI
+	 */
 	public StartUI() {
 		setResizable(false);
 		frame = this;
@@ -24,6 +35,9 @@ public class StartUI extends JFrame implements Runnable {
 		initComponents();
 	}
 	
+	/**
+	 * Create components
+	 */
 	private void initComponents() {
 		button = new JButton("START");
 		title = new JLabel("HealthMe", SwingConstants.CENTER);
