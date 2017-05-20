@@ -1,5 +1,7 @@
 package user;
 
+import calories.CalculateCalories;
+
 public class User {
 
 	// activity is a daily life activity

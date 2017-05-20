@@ -1,4 +1,4 @@
-package application;
+package calories;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -18,8 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import application.PickTypeUI;
 import javafx.scene.text.Font;
-import user.Food;
 import user.User;
 
 public class CaloriesUI extends JFrame implements Runnable {

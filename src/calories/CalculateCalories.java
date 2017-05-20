@@ -1,4 +1,4 @@
-package user;
+package calories;
 
 /**
  * Calories that needed per day.
