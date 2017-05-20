@@ -151,6 +151,7 @@ public class CaloriesUI extends JFrame implements Runnable {
 		textAreaPanel.add(leftscroll);
 		textAreaPanel.add(rightscroll);
 		panel.add(textAreaPanel);
+		panel.add(backBtn);
 		panel.add(caloriesNeedLabel);
 		frame.add(panel);
 	}

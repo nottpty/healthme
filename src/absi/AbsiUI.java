@@ -17,6 +17,9 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import application.PickTypeUI;
+import user.User;
+
 /**
  * This is user interface for ABSI calculator. GUI of ABSI calculator can show
  * about mortality risk level of user by using personal information of user.
@@ -24,12 +27,17 @@ import javax.swing.JTextField;
  * @author Patinya Yongyai
  *
  */
-public class AbsiUI extends JFrame implements Observer {
+public class AbsiUI extends JFrame implements Observer, Runnable {
+	
+	private User user;
+	
+	private JFrame frame;
 	private JTextField ageTextField;
 	private JTextField heightTextField;
 	private JTextField weightTextField;
 	private JTextField waistCircumTextField;
 	private JButton calculateButton;
+	private JButton backBtn;
 	private JLabel genderLabel;
 	private JLabel ageLabel;
 	private JLabel heightLabel;
@@ -48,10 +56,12 @@ public class AbsiUI extends JFrame implements Observer {
 	 *            is a reference from a main method to initialize Absi class in
 	 *            this class.
 	 */
-	public AbsiUI(Absi absi) {
+	public AbsiUI(Absi absi, User user) {
+		frame = this;
+		this.user = user;
 		this.absi = absi;
-		this.setTitle("ABSI Calculator");
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		frame.setTitle("ABSI Calculator");
+		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
 	}
 
@@ -72,17 +82,27 @@ public class AbsiUI extends JFrame implements Observer {
 		weightTextField = new JTextField(3);
 		waistCircumTextField = new JTextField(3);
 		calculateButton = new JButton("Calculate Now!");
+		backBtn = new JButton("Back");
 		resultLabel = new JLabel("", (int) CENTER_ALIGNMENT);
 		resultLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
 		Panel panel1 = new Panel(new FlowLayout());
 		Panel panel2 = new Panel(new FlowLayout((int) LEFT_ALIGNMENT));
 		Panel panel3 = new Panel(new FlowLayout((int) LEFT_ALIGNMENT));
 		Panel panel4 = new Panel(new FlowLayout((int) LEFT_ALIGNMENT));
 		Panel panel5 = new Panel(new FlowLayout((int) LEFT_ALIGNMENT));
 		resultPanel = new Panel(new BorderLayout());
-		Panel panel7 = new Panel(new BorderLayout());
+		Panel panel7 = new Panel(new FlowLayout());
 		resultPanel.setBackground(Color.WHITE);
 		this.setLayout(new GridLayout(7, 1));
+		backBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PickTypeUI pickTypeUI = new PickTypeUI(user);
+				pickTypeUI.run();
+				frame.dispose();
+			}
+		});
 		maleRadioButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -126,7 +146,8 @@ public class AbsiUI extends JFrame implements Observer {
 		panel5.add(waistCircumLabel);
 		panel5.add(waistCircumTextField);
 		resultPanel.add(resultLabel);
-		panel7.add(calculateButton, BorderLayout.CENTER);
+		panel7.add(backBtn);
+		panel7.add(calculateButton);
 		this.add(panel1);
 		this.add(panel2);
 		this.add(panel3);

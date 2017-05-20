@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import absi.Absi;
+import absi.AbsiUI;
 import user.User;
 import java.awt.Font;
 
@@ -13,7 +15,7 @@ public class PickTypeUI extends JFrame implements Runnable{
 
 	private User user;
 	private JFrame frame;
-	private JButton caloriesBtn, absiBtn;
+	private JButton caloriesBtn, absiBtn, editUserBtn;
 	
 	public PickTypeUI(User user) {
 		this.user = user;
@@ -35,6 +37,17 @@ public class PickTypeUI extends JFrame implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				CaloriesUI caloriesUI = new CaloriesUI(user);
 				caloriesUI.run();
+				frame.dispose();
+			}
+		});
+		
+		absiBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Absi absi = new Absi();
+				AbsiUI absiUI = new AbsiUI(absi, user);
+				absi.addObserver(absiUI);
+				absiUI.run();
 				frame.dispose();
 			}
 		});
