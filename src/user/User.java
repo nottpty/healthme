@@ -32,6 +32,10 @@ public class User {
 		return this.name;
 	}
 	
+	public int getCalories() {
+		return this.calories;
+	}
+	
 	public String getGender() {
 		return this.gender;
 	}
