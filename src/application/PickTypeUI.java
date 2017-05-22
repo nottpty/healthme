@@ -8,13 +8,16 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 
 import absi.Absi;
 import absi.AbsiUI;
 import calories.CaloriesUI;
+import javafx.scene.shape.Box;
 import user.User;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -31,6 +34,7 @@ public class PickTypeUI extends JFrame implements Runnable{
 
 	private User user;
 	private JFrame frame;
+	private JProgressBar caloriesBar;
 	private JLabel nameLabel, ageLabel, genderLabel, todayCaloriesLabel, weightLabel, heightLabel;
 	private JButton caloriesBtn, absiBtn, editUserBtn;
 	
@@ -46,7 +50,9 @@ public class PickTypeUI extends JFrame implements Runnable{
 	}
 	
 	private void initComponents() {
+		JPanel labelPanel = new JPanel();
 		JPanel northPanel = new JPanel();
+		JPanel progressPanel = new JPanel();
 		JPanel centerPanel = new JPanel();
 		JPanel southPanel = new JPanel();
 		
@@ -63,6 +69,12 @@ public class PickTypeUI extends JFrame implements Runnable{
 		weightLabel = new JLabel();
 		heightLabel = new JLabel();
 		
+		caloriesBar = new JProgressBar(0, 2000);
+		caloriesBar.setMaximumSize(new Dimension(0, user.getfinalCalories()));
+		caloriesBar.setValue(user.getCalories());
+		caloriesBar.setStringPainted(true);
+		
+		caloriesBar.setPreferredSize(new Dimension(700, 50));
 		nameLabel.setPreferredSize(new Dimension(150, 100));
 		ageLabel.setPreferredSize(new Dimension(100, 100));
 		genderLabel.setPreferredSize(new Dimension(100, 100));
@@ -78,12 +90,15 @@ public class PickTypeUI extends JFrame implements Runnable{
 		todayCaloriesLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		weightLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		heightLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		
+		absiBtn.setBackground(new Color(59, 89, 182));
+		absiBtn.setForeground(Color.WHITE);
+		caloriesBtn.setBackground(new Color(59, 89, 182));
+		caloriesBtn.setForeground(Color.WHITE);
 		
 		nameLabel.setText("Username: " + user.getName());
 		ageLabel.setText("Age: " + user.getAge() + "");
 		genderLabel.setText("Gender: " + user.getGender());
-		todayCaloriesLabel.setText("Calories: " + user.getCalories() + "/" + user.getCaloriesNeeded());
+		todayCaloriesLabel.setText("Calories: " + user.getCalories() + "/" + user.getfinalCalories());
 		weightLabel.setText("Weight: " + user.getWeight());
 		heightLabel.setText("Height: " + user.getHeight());
 		
@@ -117,18 +132,23 @@ public class PickTypeUI extends JFrame implements Runnable{
 			}
 		});
 		
-		northPanel.add(nameLabel);
-		northPanel.add(ageLabel);
-		northPanel.add(genderLabel);
-		northPanel.add(weightLabel);
-		northPanel.add(heightLabel);
-		northPanel.add(todayCaloriesLabel);
+		northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
+		labelPanel.add(nameLabel);
+		labelPanel.add(ageLabel);
+		labelPanel.add(genderLabel);
+		labelPanel.add(weightLabel);
+		labelPanel.add(heightLabel);
+		labelPanel.add(todayCaloriesLabel);
+		progressPanel.add(caloriesBar);
+		northPanel.add(labelPanel);
+		northPanel.add(progressPanel);
 		centerPanel.add(absiBtn);
 		centerPanel.add(caloriesBtn);
 		southPanel.add(editUserBtn);
 		
 		frame.setLayout(new BorderLayout());
 		frame.add(northPanel, BorderLayout.NORTH);
+		
 		frame.add(centerPanel, BorderLayout.CENTER);
 		frame.add(southPanel, BorderLayout.SOUTH);
 	}

@@ -12,7 +12,7 @@ public class User {
 	
 	// unit is Kcal
 	// references : https://authoritynutrition.com/how-many-calories-per-day/
-	private int calories, caloriesNeeded, age;
+	private int calories, finalCalories, caloriesNeeded, age;
 	
 	public User(String name, String gender, String activity, int age) {
 		this.name = name;
@@ -20,6 +20,7 @@ public class User {
 		this.activity = activity;
 		this.age = age;
 		calories = 0;
+		finalCalories = 0;
 		caloriesNeeded = 0;
 	}
 	
@@ -27,6 +28,7 @@ public class User {
 	public int caloriesNeeded() {
 		CalculateCalories cal = new CalculateCalories();
 		caloriesNeeded = cal.calculateCal(gender, age, activity);
+		finalCalories = caloriesNeeded;
 		return caloriesNeeded;
 	}
 	
@@ -66,6 +68,14 @@ public class User {
 		return this.caloriesNeeded;
 	}
 
+	public int getfinalCalories() {
+		return this.finalCalories;
+	}
+	
+	public void setfinalCalories(int finalCalories) {
+		this.finalCalories = finalCalories;
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
