@@ -19,6 +19,8 @@ import user.User;
 import java.awt.Font;
 import java.awt.Toolkit;
 
+import java.sql.*;
+
 /**
  * A page that need user to fill their basic information.
  * 
@@ -31,15 +33,15 @@ public class InformationUI extends JFrame {
 
 	private String name, gender, activity;
 	private int age;
-	private JLabel ageLabel, nameLabel, genderLabel, activityLabel;
-	private JTextField nameTxt, ageTxt;
+	private JLabel ageLabel, nameLabel, genderLabel, activityLabel, passwordLabel;
+	private JTextField nameTxt, ageTxt, passwordTxt;
 	private JComboBox<String> genderBox, activityBox;
 	private JButton enterBtn, backBtn;
 	private Connection connect = null;
 	private Statement s = null;
-	
+
 	private User user;
-	
+
 	/**
 	 * Create page
 	 */
@@ -49,9 +51,9 @@ public class InformationUI extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 	}
-	
+
 	private void initComponents() {
 		ageLabel = new JLabel("Age: ");
 		ageLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -65,36 +67,40 @@ public class InformationUI extends JFrame {
 		activityLabel = new JLabel("Activity: ");
 		activityLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		activityLabel.setBounds(105, 201, 100, 100);
+		
+		passwordLabel = new JLabel("Password: ");
+		passwordTxt = new JTextField(15);
+		
 		nameTxt = new JTextField(10);
 		nameTxt.setBounds(191, 46, 363, 43);
 		ageTxt = new JTextField(5);
 		ageTxt.setBounds(191, 135, 113, 43);
 		enterBtn = new JButton("ENTER");
 		enterBtn.setBounds(555, 329, 100, 37);
-		
+
 		enterBtn.setBackground(new Color(59, 89, 182));
-        enterBtn.setForeground(Color.WHITE);
-        enterBtn.setFocusPainted(false);
-        enterBtn.setOpaque(true);
-        enterBtn.setBorderPainted(false);
+		enterBtn.setForeground(Color.WHITE);
+		enterBtn.setFocusPainted(false);
+		enterBtn.setOpaque(true);
+		enterBtn.setBorderPainted(false);
 		// Not use yet!
 		backBtn = new JButton("BACK");
 		backBtn.setBounds(424, 329, 100, 37);
 		backBtn.setBackground(new Color(59, 89, 182));
-        backBtn.setForeground(Color.WHITE);
-        backBtn.setFocusPainted(false);
-        backBtn.setOpaque(true);
-        backBtn.setBorderPainted(false);
-		
-		String[] genderArr = {"Male", "Female"};
-		String[] activityArr = {"Sedentary", "Moderately Active", "Active"};
-		
+		backBtn.setForeground(Color.WHITE);
+		backBtn.setFocusPainted(false);
+		backBtn.setOpaque(true);
+		backBtn.setBorderPainted(false);
+
+		String[] genderArr = { "Male", "Female" };
+		String[] activityArr = { "Sedentary", "Moderately Active", "Active" };
+
 		genderBox = new JComboBox<String>(genderArr);
 		genderBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		genderBox.setBounds(454, 135, 100, 43);
 		activityBox = new JComboBox<String>(activityArr);
 		activityBox.setBounds(191, 234, 113, 43);
-		
+
 		enterBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -102,8 +108,8 @@ public class InformationUI extends JFrame {
 				age = Integer.parseInt(ageTxt.getText());
 				gender = genderBox.getSelectedItem() + "";
 				activity = activityBox.getSelectedItem() + "";
-				
-				//Create User
+
+				// Create User
 				user = new User(name, gender, activity, age);
 				insertToDatabase(user);
 				user.caloriesNeeded();
@@ -113,7 +119,7 @@ public class InformationUI extends JFrame {
 			}
 		});
 		getContentPane().setLayout(null);
-		
+
 		this.getContentPane().add(activityBox);
 		this.getContentPane().add(activityLabel);
 		this.getContentPane().add(ageLabel);
@@ -124,64 +130,36 @@ public class InformationUI extends JFrame {
 		this.getContentPane().add(genderLabel);
 		this.getContentPane().add(nameLabel);
 		this.getContentPane().add(nameTxt);
+//		this.getContentPane().add(passwordLabel);
+//		this.getContentPane().add(passwordTxt);
 	}
-	
+
 	public void run() {
 		this.setVisible(true);
 	}
-	
-	public void insertToDatabase(User user) {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
 
-			connect =  DriverManager.getConnection("jdbc:mysql://localhost/HealthMe" +
-					"?autoReconnect=true&useSSL=false&user=root&password=null");
-			if(connect != null){
-				System.out.println("Database Connected.");
-			} else {
-				System.out.println("Database Connect Failed.");
-			}
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		// Close
+	public void insertToDatabase(User user) {
+		Connection c = null;
+		Statement stmt = null;
 		try {
-			if(connect != null){
-				connect.close();
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection("jdbc:sqlite:user.db");
+			c.setAutoCommit(false);
+			System.out.println("Opened database successfully");
+
+			stmt = c.createStatement();
+			String sql = "INSERT INTO USER (NAME,PASSWORD,GENDER,ACTIVITY,AGE) " + "VALUES (" + '\'' + user.getName() + '\'' + "," + '\''
+					+ "password" + '\'' + "," + '\'' + user.getGender() + '\'' + "," + '\'' + user.getActivity()
+					+ '\'' + "," + '\'' + user.getAge() + '\'' + ");";
+			stmt.executeUpdate(sql);
+
+			stmt.close();
+			c.commit();
+			c.close();
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 		}
-//			
-//			s = connect.createStatement();
-//			
-//			String sql = "INSERT INTO user " +
-//					"(name,gender,age) " + 
-//					"VALUES ("+'\''+user.getName()+'\''+","+'\''+user.getGender()+'\''+","+'\''+user.getAge()+'\''+") ";
-//			 s.execute(sql);
-//			
-//			 System.out.println("Record Inserted Successfully");
-//			 
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			System.out.println(e.getMessage());
-//			e.printStackTrace();
-//		}
-//
-//		try {
-//			if(s != null) {
-//				s.close();
-//				connect.close();
-//			}
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			System.out.println(e.getMessage());
-//			e.printStackTrace();
-//		}
+		System.out.println("Records created successfully");
 	}
 
 }
