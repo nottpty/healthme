@@ -1,6 +1,4 @@
 package application;
-
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,9 +21,8 @@ import java.awt.Font;
  *
  * @version 20.05.2017
  */
-public class EditUserUI extends JFrame implements Runnable {
+public class EditUserUI extends JFrame {
 
-	private JFrame frame;
 	private User user;
 	private JLabel nameLabel, ageLabel, weightLabel, heightLabel, genderLabel;
 	private JTextField nameTxt, ageTxt, weightTxt, heightTxt;
@@ -36,8 +33,9 @@ public class EditUserUI extends JFrame implements Runnable {
 	 * Create UI with given user
 	 */
 	public EditUserUI(User user) {
-		frame = this;
 		this.user = user;
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setSize(800, 450);
 		initComponents();
 	}
 	
@@ -72,7 +70,7 @@ public class EditUserUI extends JFrame implements Runnable {
 		genderLabel.setText("Gender: ");
 		ageLabel.setText("Age: ");
 		String[] genderArr = {"Male", "Female"};
-		genderBox = new JComboBox(genderArr);
+		genderBox = new JComboBox<String>(genderArr);
 		genderBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		saveBtn.addActionListener(new ActionListener() {
@@ -90,7 +88,7 @@ public class EditUserUI extends JFrame implements Runnable {
 				
 				PickTypeUI pickTypeUI = new PickTypeUI(user);
 				pickTypeUI.run();
-				frame.dispose();
+				dispose();
 			}
 		});
 		
@@ -121,17 +119,14 @@ public class EditUserUI extends JFrame implements Runnable {
 		panel.add(weightPanel);
 		panel.add(genderPanel);
 		panel.add(saveBtn);
-		frame.getContentPane().add(panel);
+		this.getContentPane().add(panel);
 		
 		
 		
 	}
 	
-	@Override
 	public void run() {
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(800, 450);
+		this.setVisible(true);
 	}
 
 }

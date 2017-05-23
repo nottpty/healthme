@@ -1,6 +1,5 @@
 package application;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,20 +17,19 @@ import java.awt.Font;
  * @version 20.05.2017
  *
  */
-public class StartUI extends JFrame implements Runnable {
+public class StartUI extends JFrame {
 	
 	private JButton button;
 	private JLabel title;
-	private JFrame frame;
 	
 	/**
 	 * Create UI
 	 */
 	public StartUI() {
 		setResizable(false);
-		frame = this;
-		frame.setTitle("HealthMe");
-		frame.setSize(800, 450);
+		this.setTitle("HealthMe");
+		this.setSize(800, 450);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
 	}
 	
@@ -48,7 +46,7 @@ public class StartUI extends JFrame implements Runnable {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				dispose();
 				InformationUI informationUI = new InformationUI();
 				informationUI.run();
 			}
@@ -59,9 +57,7 @@ public class StartUI extends JFrame implements Runnable {
 		getContentPane().add(button);
 	}
 
-	@Override
 	public void run() {
 		this.setVisible(true);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

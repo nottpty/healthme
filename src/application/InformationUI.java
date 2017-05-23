@@ -1,16 +1,13 @@
 package application;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import user.User;
@@ -24,12 +21,10 @@ import java.awt.Font;
  * @version 20.05.2017
  *
  */
-public class InformationUI extends JFrame implements Runnable {
+public class InformationUI extends JFrame {
 
 	private String name, gender, activity;
 	private int age;
-
-	private JFrame frame;
 	private JLabel ageLabel, nameLabel, genderLabel, activityLabel;
 	private JTextField nameTxt, ageTxt;
 	private JComboBox<String> genderBox, activityBox;
@@ -41,9 +36,9 @@ public class InformationUI extends JFrame implements Runnable {
 	 * Create page
 	 */
 	public InformationUI() {
-		frame = this;
-		frame.setTitle("Basic Information");
-		frame.setSize(800, 450);
+		this.setTitle("Basic Information");
+		this.setSize(800, 450);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
 	}
 	
@@ -70,20 +65,24 @@ public class InformationUI extends JFrame implements Runnable {
 		enterBtn.setBackground(new Color(59, 89, 182));
         enterBtn.setForeground(Color.WHITE);
         enterBtn.setFocusPainted(false);
+        enterBtn.setOpaque(true);
+        enterBtn.setBorderPainted(false);
 		// Not use yet!
 		backBtn = new JButton("BACK");
 		backBtn.setBounds(424, 329, 100, 37);
 		backBtn.setBackground(new Color(59, 89, 182));
         backBtn.setForeground(Color.WHITE);
         backBtn.setFocusPainted(false);
+        backBtn.setOpaque(true);
+        backBtn.setBorderPainted(false);
 		
 		String[] genderArr = {"Male", "Female"};
 		String[] activityArr = {"Sedentary", "Moderately Active", "Active"};
 		
-		genderBox = new JComboBox(genderArr);
+		genderBox = new JComboBox<String>(genderArr);
 		genderBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		genderBox.setBounds(454, 135, 100, 43);
-		activityBox = new JComboBox(activityArr);
+		activityBox = new JComboBox<String>(activityArr);
 		activityBox.setBounds(191, 234, 113, 43);
 		
 		enterBtn.addActionListener(new ActionListener() {
@@ -96,29 +95,28 @@ public class InformationUI extends JFrame implements Runnable {
 				
 				//Create User
 				user = new User(name, gender, activity, age);
+				user.caloriesNeeded();
 				PickTypeUI ui = new PickTypeUI(user);
 				ui.run();
-				frame.dispose();
+				dispose();
 			}
 		});
 		getContentPane().setLayout(null);
 		
-		frame.getContentPane().add(activityBox);
-		frame.getContentPane().add(activityLabel);
-		frame.getContentPane().add(ageLabel);
-		frame.getContentPane().add(ageTxt);
-		frame.getContentPane().add(backBtn);
-		frame.getContentPane().add(enterBtn);
-		frame.getContentPane().add(genderBox);
-		frame.getContentPane().add(genderLabel);
-		frame.getContentPane().add(nameLabel);
-		frame.getContentPane().add(nameTxt);
+		this.getContentPane().add(activityBox);
+		this.getContentPane().add(activityLabel);
+		this.getContentPane().add(ageLabel);
+		this.getContentPane().add(ageTxt);
+		this.getContentPane().add(backBtn);
+		this.getContentPane().add(enterBtn);
+		this.getContentPane().add(genderBox);
+		this.getContentPane().add(genderLabel);
+		this.getContentPane().add(nameLabel);
+		this.getContentPane().add(nameTxt);
 	}
 	
-	@Override
 	public void run() {
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
 	}
 
 }

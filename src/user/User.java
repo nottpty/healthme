@@ -24,7 +24,6 @@ public class User {
 		caloriesNeeded = 0;
 	}
 	
-	
 	public int caloriesNeeded() {
 		CalculateCalories cal = new CalculateCalories();
 		caloriesNeeded = cal.calculateCal(gender, age, activity);
@@ -52,7 +51,7 @@ public class User {
 		return this.height;
 	}
 	
-	public double getAge() {
+	public int getAge() {
 		return this.age;
 	}
 	
@@ -80,7 +79,7 @@ public class User {
 		this.name = name;
 	}
 	
-	public void setGender(String name) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 	

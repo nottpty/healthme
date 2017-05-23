@@ -2,9 +2,11 @@ package absi;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Panel;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
@@ -27,11 +29,9 @@ import user.User;
  * @author Patinya Yongyai
  *
  */
-public class AbsiUI extends JFrame implements Observer, Runnable {
-	
+public class AbsiUI extends JFrame implements Observer {
+
 	private User user;
-	
-	private JFrame frame;
 	private JTextField ageTextField;
 	private JTextField heightTextField;
 	private JTextField weightTextField;
@@ -57,11 +57,10 @@ public class AbsiUI extends JFrame implements Observer, Runnable {
 	 *            this class.
 	 */
 	public AbsiUI(Absi absi, User user) {
-		frame = this;
 		this.user = user;
 		this.absi = absi;
-		frame.setTitle("ABSI Calculator");
-		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setTitle("ABSI Calculator");
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
 	}
 
@@ -85,7 +84,7 @@ public class AbsiUI extends JFrame implements Observer, Runnable {
 		backBtn = new JButton("Back");
 		resultLabel = new JLabel("", (int) CENTER_ALIGNMENT);
 		resultLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		
+
 		Panel panel1 = new Panel(new FlowLayout());
 		Panel panel2 = new Panel(new FlowLayout((int) LEFT_ALIGNMENT));
 		Panel panel3 = new Panel(new FlowLayout((int) LEFT_ALIGNMENT));
@@ -100,7 +99,7 @@ public class AbsiUI extends JFrame implements Observer, Runnable {
 			public void actionPerformed(ActionEvent e) {
 				PickTypeUI pickTypeUI = new PickTypeUI(user);
 				pickTypeUI.run();
-				frame.dispose();
+				dispose();
 			}
 		});
 		maleRadioButton.addActionListener(new ActionListener() {

@@ -1,6 +1,5 @@
 package calories;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -20,7 +19,6 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 import application.PickTypeUI;
-import javafx.scene.text.Font;
 import user.User;
 
 /**
@@ -31,12 +29,10 @@ import user.User;
  * @version 20.05.2017
  *
  */
-public class CaloriesUI extends JFrame implements Runnable {
+public class CaloriesUI extends JFrame {
 
 	private User user;
 	private Food food;
-	
-	private JFrame frame;
 	private JTextArea leftTextArea, rightTextArea;
 	private JPanel panel;
 	private JComboBox<String> foodBox, thaifoodBox;
@@ -53,9 +49,9 @@ public class CaloriesUI extends JFrame implements Runnable {
 	public CaloriesUI(User user) {
 		this.user = user;
 		totalCalories = user.getCalories();
-		frame = this;
-		frame.setTitle("HealthME");
-		frame.setSize(800, 450);
+		this.setTitle("HealthME");
+		this.setSize(800, 450);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
 	}
 	
@@ -80,7 +76,7 @@ public class CaloriesUI extends JFrame implements Runnable {
 		leftTextArea.setFont(leftTextArea.getFont().deriveFont(25f));
 		rightTextArea.setFont(leftTextArea.getFont().deriveFont(25f));
 		
-		caloriesNeedLabel.setText(user.caloriesNeeded() + " KCal remaining");
+		caloriesNeedLabel.setText(user.getCaloriesNeeded() + " KCal remaining");
 		caloriesNeedLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		backBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
@@ -141,7 +137,7 @@ public class CaloriesUI extends JFrame implements Runnable {
 				user.setCalories(totalCalories);
 				PickTypeUI ui = new PickTypeUI(user);
 				ui.run();
-				frame.dispose();
+				dispose();
 			}
 		});
 		
@@ -182,13 +178,11 @@ public class CaloriesUI extends JFrame implements Runnable {
 		panel.add(textAreaPanel);
 		panel.add(backBtn);
 		panel.add(caloriesNeedLabel);
-		frame.add(panel);
+		this.add(panel);
 	}
 
-	@Override
 	public void run() {
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
 	}
 
 	

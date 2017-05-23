@@ -30,10 +30,9 @@ import java.awt.Font;
  *
  * @version 20.05.2017
  */
-public class PickTypeUI extends JFrame implements Runnable{
+public class PickTypeUI extends JFrame {
 
 	private User user;
-	private JFrame frame;
 	private JProgressBar caloriesBar;
 	private JLabel nameLabel, ageLabel, genderLabel, todayCaloriesLabel, weightLabel, heightLabel;
 	private JButton caloriesBtn, absiBtn, editUserBtn;
@@ -44,8 +43,8 @@ public class PickTypeUI extends JFrame implements Runnable{
 	 */
 	public PickTypeUI(User user) {
 		this.user = user;
-		frame = this;
-		frame.setSize(800,  450);
+		this.setSize(800,  450);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
 	}
 	
@@ -92,11 +91,15 @@ public class PickTypeUI extends JFrame implements Runnable{
 		heightLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		absiBtn.setBackground(new Color(59, 89, 182));
 		absiBtn.setForeground(Color.WHITE);
+		absiBtn.setOpaque(true);
+		absiBtn.setBorderPainted(false);
 		caloriesBtn.setBackground(new Color(59, 89, 182));
 		caloriesBtn.setForeground(Color.WHITE);
+		caloriesBtn.setOpaque(true);
+		caloriesBtn.setBorderPainted(false);
 		
 		nameLabel.setText("Username: " + user.getName());
-		ageLabel.setText("Age: " + user.getAge() + "");
+		ageLabel.setText("Age: " + user.getAge());
 		genderLabel.setText("Gender: " + user.getGender());
 		todayCaloriesLabel.setText("Calories: " + user.getCalories() + "/" + user.getfinalCalories());
 		weightLabel.setText("Weight: " + user.getWeight());
@@ -108,7 +111,7 @@ public class PickTypeUI extends JFrame implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				CaloriesUI caloriesUI = new CaloriesUI(user);
 				caloriesUI.run();
-				frame.dispose();
+				dispose();
 			}
 		});
 		
@@ -116,10 +119,10 @@ public class PickTypeUI extends JFrame implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Absi absi = new Absi();
-				AbsiUI absiUI = new AbsiUI(absi, user);
+				AbsiUI absiUI = new AbsiUI(absi,user);
 				absi.addObserver(absiUI);
 				absiUI.run();
-				frame.dispose();
+				setVisible(false);
 			}
 		});
 		
@@ -128,7 +131,7 @@ public class PickTypeUI extends JFrame implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				EditUserUI editUI = new EditUserUI(user);
 				editUI.run();
-				frame.dispose();
+				dispose();
 			}
 		});
 		
@@ -146,17 +149,15 @@ public class PickTypeUI extends JFrame implements Runnable{
 		centerPanel.add(caloriesBtn);
 		southPanel.add(editUserBtn);
 		
-		frame.setLayout(new BorderLayout());
-		frame.add(northPanel, BorderLayout.NORTH);
+		this.setLayout(new BorderLayout());
+		this.add(northPanel, BorderLayout.NORTH);
 		
-		frame.add(centerPanel, BorderLayout.CENTER);
-		frame.add(southPanel, BorderLayout.SOUTH);
+		this.add(centerPanel, BorderLayout.CENTER);
+		this.add(southPanel, BorderLayout.SOUTH);
 	}
 	
-	@Override
 	public void run() {
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
 	}
 
 }
