@@ -1,5 +1,6 @@
 package application;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,11 +14,12 @@ import javax.swing.JTextField;
 
 import user.User;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 /**
  * A page that can update a basic information of user.
  * 
- * @author Narut Poovorakit
+ * @author Narut Poovorakit, Patinya Yongyai
  *
  * @version 20.05.2017
  */
@@ -37,6 +39,8 @@ public class EditUserUI extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setSize(800, 450);
 		initComponents();
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 	}
 	
 	private void initComponents() {

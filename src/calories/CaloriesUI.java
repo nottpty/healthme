@@ -3,6 +3,7 @@ package calories;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -24,7 +25,7 @@ import user.User;
 /**
  * A user interface that show calories by adding food in the list
  * 
- * @author Narut Poovorakit
+ * @author Narut Poovorakit, Patinya Yongyai
  * 
  * @version 20.05.2017
  *
@@ -53,6 +54,8 @@ public class CaloriesUI extends JFrame {
 		this.setSize(800, 450);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 	}
 	
 	/**

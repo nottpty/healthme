@@ -7,12 +7,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 /**
  * A start page of the application
  * 
- * @author Narut Poovorakit
+ * @author Narut Poovorakit, Patinya Yongyai
  * 
  * @version 20.05.2017
  *
@@ -31,6 +34,8 @@ public class StartUI extends JFrame {
 		this.setSize(800, 450);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 	}
 	
 	/**
