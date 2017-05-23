@@ -3,6 +3,10 @@ package application;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -29,6 +33,8 @@ public class InformationUI extends JFrame {
 	private JTextField nameTxt, ageTxt;
 	private JComboBox<String> genderBox, activityBox;
 	private JButton enterBtn, backBtn;
+	private Connection connect = null;
+	private Statement s = null;
 	
 	private User user;
 	
@@ -95,6 +101,7 @@ public class InformationUI extends JFrame {
 				
 				//Create User
 				user = new User(name, gender, activity, age);
+				insertToDatabase(user);
 				user.caloriesNeeded();
 				PickTypeUI ui = new PickTypeUI(user);
 				ui.run();
@@ -117,6 +124,60 @@ public class InformationUI extends JFrame {
 	
 	public void run() {
 		this.setVisible(true);
+	}
+	
+	public void insertToDatabase(User user) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+
+			connect =  DriverManager.getConnection("jdbc:mysql://localhost/HealthMe" +
+					"?autoReconnect=true&useSSL=false&user=root&password=null");
+			if(connect != null){
+				System.out.println("Database Connected.");
+			} else {
+				System.out.println("Database Connect Failed.");
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// Close
+		try {
+			if(connect != null){
+				connect.close();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//			
+//			s = connect.createStatement();
+//			
+//			String sql = "INSERT INTO user " +
+//					"(name,gender,age) " + 
+//					"VALUES ("+'\''+user.getName()+'\''+","+'\''+user.getGender()+'\''+","+'\''+user.getAge()+'\''+") ";
+//			 s.execute(sql);
+//			
+//			 System.out.println("Record Inserted Successfully");
+//			 
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			System.out.println(e.getMessage());
+//			e.printStackTrace();
+//		}
+//
+//		try {
+//			if(s != null) {
+//				s.close();
+//				connect.close();
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			System.out.println(e.getMessage());
+//			e.printStackTrace();
+//		}
 	}
 
 }
