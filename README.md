@@ -1,4 +1,4 @@
-# Heath Me
+# Health Me
 
 ## Author
 * **Patinya Yongyai**
