@@ -5,12 +5,21 @@ import java.sql.*;
 /**
  * Main class that create application.
  * 
- * @author Narut Poovorakit
+ * @author Narut Poovorakit, Patinya Yongyai
  *
  * @version 20.05.2017
  */
 public class Main {
 	public static void main(String[] args) {
+		Main main = new Main();
+		main.connectDatabase();
+//	    LoginUI loginUI = new LoginUI();
+//	    loginUI.run();
+	    StartUI startPage = new StartUI();
+		startPage.run();
+	}
+	
+	public void connectDatabase() {
 		Connection c = null;
 	    Statement stmt = null;
 	    try {
@@ -32,9 +41,5 @@ public class Main {
 	    } catch ( Exception e ) {
 	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	    }
-	    LoginUI loginUI = new LoginUI();
-	    loginUI.run();
-//	    StartUI startPage = new StartUI();
-//		startPage.run();
 	}
 }
