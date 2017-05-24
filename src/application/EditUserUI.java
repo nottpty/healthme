@@ -140,20 +140,23 @@ public class EditUserUI extends JFrame {
 
 	      stmt = c.createStatement();
 	      if(!weightTxt.getText().equals("")) {
-	    	  String sql = "UPDATE USER set WEIGHT = "+weightTxt.getText()+" where NAME="+user.getName()+";";
+	    	  String sql = "UPDATE USER set WEIGHT = "+weightTxt.getText()+" where NAME="+'\''+user.getName()+'\''+";";
 	    	  System.out.println(sql);
 		      stmt.executeUpdate(sql);
 	      }
 	      if(!heightTxt.getText().equals("")) {
-	    	  String sql = "UPDATE USER set HEIGHT = "+heightTxt.getText()+" where NAME="+user.getName()+";";
+	    	  String sql = "UPDATE USER set HEIGHT = "+heightTxt.getText()+" where NAME="+'\''+user.getName()+'\''+";";
+	    	  System.out.println(sql);
 		      stmt.executeUpdate(sql);
 	      }
 	      if(!ageTxt.getText().equals("")) {
-	    	  String sql = "UPDATE USER set AGE = "+ageTxt.getText()+" where NAME="+user.getName()+";";
+	    	  String sql = "UPDATE USER set AGE = "+ageTxt.getText()+" where NAME="+'\''+user.getName()+'\''+";";
+	    	  System.out.println(sql);
 		      stmt.executeUpdate(sql);
 	      }
 	      if(!activityBox.getSelectedItem().equals("")) {
-	    	  String sql = "UPDATE USER set ACTIVITY = "+activityBox.getSelectedItem() +" where NAME="+user.getName()+";";
+	    	  String sql = "UPDATE USER set ACTIVITY = "+'\''+activityBox.getSelectedItem()+'\''+" where NAME="+'\''+user.getName()+'\''+";";
+	    	  System.out.println(sql);
 		      stmt.executeUpdate(sql);
 	      }
 	      c.commit();
