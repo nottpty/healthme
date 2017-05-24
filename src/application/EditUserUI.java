@@ -28,9 +28,9 @@ import java.sql.*;
 public class EditUserUI extends JFrame {
 
 	private User user;
-	private JLabel nameLabel, ageLabel, weightLabel, heightLabel, genderLabel;
+	private JLabel nameLabel, ageLabel, weightLabel, heightLabel, activityLabel;
 	private JTextField nameTxt, ageTxt, weightTxt, heightTxt;
-	private JComboBox<String> genderBox;
+	private JComboBox<String> activityBox;
 	private JButton saveBtn;
 	
 	/**
@@ -48,7 +48,7 @@ public class EditUserUI extends JFrame {
 	private void initComponents() {
 		nameLabel = new JLabel();
 		weightLabel = new JLabel();
-		genderLabel = new JLabel();
+		activityLabel = new JLabel();
 		nameTxt = new JTextField(10);
 		weightTxt = new JTextField(10);
 		ageTxt = new JTextField(10);
@@ -60,7 +60,7 @@ public class EditUserUI extends JFrame {
 		heightLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		heightTxt.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		weightLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		genderLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		activityLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		nameTxt.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		nameTxt.setText(user.getName());
 		nameTxt.setEditable(false);
@@ -75,11 +75,11 @@ public class EditUserUI extends JFrame {
 		heightLabel.setText("Height: ");
 		nameLabel.setText("Name: ");
 		weightLabel.setText("Weight: ");
-		genderLabel.setText("Gender: ");
+		activityLabel.setText("Activity: ");
 		ageLabel.setText("Age: ");
-		String[] genderArr = {"Male", "Female"};
-		genderBox = new JComboBox<String>(genderArr);
-		genderBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		String[] activityArr = {"Sedentary", "Lightly Active", "Moderately Active", "Very Active", "Extremely Active"};
+		activityBox = new JComboBox<String>(activityArr);
+		activityBox.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		saveBtn.addActionListener(new ActionListener() {
 			@Override
@@ -87,11 +87,8 @@ public class EditUserUI extends JFrame {
 				user.setAge(Integer.parseInt(ageTxt.getText()));
 				user.setWeight(Integer.parseInt(weightTxt.getText()));
 				user.setHeight(Integer.parseInt(heightTxt.getText()));
-				user.setGender(genderBox.getSelectedItem() + "");
-				System.out.println("Updated! " +
-				nameTxt.getText() + " " + ageTxt.getText() + " " +
-				weightTxt.getText() + " " + heightTxt.getText() + " " +
-				genderBox.getSelectedItem());
+				user.setActivity(activityBox.getSelectedItem() + "");
+				updateDatabase();
 				
 				PickTypeUI pickTypeUI = new PickTypeUI(user);
 				pickTypeUI.run();
@@ -109,8 +106,8 @@ public class EditUserUI extends JFrame {
 		namePanel.add(nameTxt);
 		weightPanel.add(weightLabel);
 		weightPanel.add(weightTxt);
-		genderPanel.add(genderLabel);
-		genderPanel.add(genderBox);
+		genderPanel.add(activityLabel);
+		genderPanel.add(activityBox);
 		
 		
 		JPanel agePanel = new JPanel();
@@ -144,6 +141,7 @@ public class EditUserUI extends JFrame {
 	      stmt = c.createStatement();
 	      if(!weightTxt.getText().equals("")) {
 	    	  String sql = "UPDATE USER set WEIGHT = "+weightTxt.getText()+" where NAME="+user.getName()+";";
+	    	  System.out.println(sql);
 		      stmt.executeUpdate(sql);
 	      }
 	      if(!heightTxt.getText().equals("")) {
@@ -154,8 +152,8 @@ public class EditUserUI extends JFrame {
 	    	  String sql = "UPDATE USER set AGE = "+ageTxt.getText()+" where NAME="+user.getName()+";";
 		      stmt.executeUpdate(sql);
 	      }
-	      if(!activityTxt.getText().equals("")) {
-	    	  String sql = "UPDATE USER set ACTIVITY = "+activityTxt.getText()+" where NAME="+user.getName()+";";
+	      if(!activityBox.getSelectedItem().equals("")) {
+	    	  String sql = "UPDATE USER set ACTIVITY = "+activityBox.getSelectedItem() +" where NAME="+user.getName()+";";
 		      stmt.executeUpdate(sql);
 	      }
 	      c.commit();
