@@ -16,6 +16,8 @@ import user.User;
 import java.awt.Font;
 import java.awt.Toolkit;
 
+import java.sql.*;
+
 /**
  * A page that can update a basic information of user.
  * 
@@ -60,6 +62,8 @@ public class EditUserUI extends JFrame {
 		weightLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		genderLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		nameTxt.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		nameTxt.setText(user.getName());
+		nameTxt.setEditable(false);
 		weightTxt.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		saveBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -80,7 +84,6 @@ public class EditUserUI extends JFrame {
 		saveBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				user.setName(nameTxt.getText());
 				user.setAge(Integer.parseInt(ageTxt.getText()));
 				user.setWeight(Integer.parseInt(weightTxt.getText()));
 				user.setHeight(Integer.parseInt(heightTxt.getText()));
@@ -127,6 +130,41 @@ public class EditUserUI extends JFrame {
 		
 		
 		
+	}
+	
+	public void updateDatabase() {
+		Connection c = null;
+	    Statement stmt = null;
+	    try {
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection("jdbc:sqlite:user.db");
+	      c.setAutoCommit(false);
+	      System.out.println("Opened database successfully");
+
+	      stmt = c.createStatement();
+	      if(!weightTxt.getText().equals("")) {
+	    	  String sql = "UPDATE USER set WEIGHT = "+weightTxt.getText()+" where NAME="+user.getName()+";";
+		      stmt.executeUpdate(sql);
+	      }
+	      if(!heightTxt.getText().equals("")) {
+	    	  String sql = "UPDATE USER set HEIGHT = "+heightTxt.getText()+" where NAME="+user.getName()+";";
+		      stmt.executeUpdate(sql);
+	      }
+	      if(!ageTxt.getText().equals("")) {
+	    	  String sql = "UPDATE USER set AGE = "+ageTxt.getText()+" where NAME="+user.getName()+";";
+		      stmt.executeUpdate(sql);
+	      }
+	      if(!activityTxt.getText().equals("")) {
+	    	  String sql = "UPDATE USER set ACTIVITY = "+activityTxt.getText()+" where NAME="+user.getName()+";";
+		      stmt.executeUpdate(sql);
+	      }
+	      c.commit();
+	      stmt.close();
+	      c.close();
+	    } catch ( Exception e ) {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	    }
+	    System.out.println("Operation done successfully");
 	}
 	
 	public void run() {

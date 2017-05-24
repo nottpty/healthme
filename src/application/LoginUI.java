@@ -2,6 +2,7 @@ package application;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Panel;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -10,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import user.User;
@@ -18,8 +20,9 @@ import java.sql.*;
 
 public class LoginUI extends JFrame {
 	private JLabel loginLabel, passwordLabel;
-	private JTextField nameTextfield, passwordTextfield;
-	private JButton loginButton;
+	private JTextField nameTextfield;
+	private JPasswordField passwordTextfield;
+	private JButton loginButton, registerButton;
 	private User user;
 
 	public LoginUI() {
@@ -31,19 +34,30 @@ public class LoginUI extends JFrame {
 	}
 
 	public void initComponents() {
-		this.setLayout(new FlowLayout());
-		loginLabel = new JLabel("Input your name: ");
+		this.setLayout(new GridLayout(3,2));
+		loginLabel = new JLabel("Your name: ");
 		nameTextfield = new JTextField(15);
-		passwordLabel = new JLabel("Password: ");
-		passwordTextfield = new JTextField(15);
+		passwordLabel = new JLabel("  Password: ");
+		passwordTextfield = new JPasswordField(15);
 		loginButton = new JButton("Login");
 		loginButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller();
+				connectDatabase();
 			}
 		});
+		registerButton = new JButton("Register now!!");
+		registerButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				InformationUI informationUI = new InformationUI();
+				informationUI.run();
+				dispose();
+			}
+		});
+		
 		Panel panel1 = new Panel(new FlowLayout());
 		Panel panel2 = new Panel(new FlowLayout());
 		Panel panel3 = new Panel(new FlowLayout());
@@ -52,16 +66,16 @@ public class LoginUI extends JFrame {
 		panel2.add(passwordLabel);
 		panel2.add(passwordTextfield);
 		panel3.add(loginButton);
+		panel3.add(registerButton);
 		this.add(panel1);
 		this.add(panel2);
 		this.add(panel3);
 		this.pack();
 	}
 
-	public void controller() {
+	public void connectDatabase() {
 		Connection c = null;
 		Statement stmt = null;
-		boolean validAccount = false;
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:user.db");
@@ -70,12 +84,13 @@ public class LoginUI extends JFrame {
 
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM USER;");
-			System.out.println(rs);
 			while (rs.next()) {
 				String name = rs.getString("name");
 				String password = rs.getString("password");
 				String gender = rs.getString("gender");
 				String activity = rs.getString("activity");
+				int weight = rs.getInt("weight");
+				int height = rs.getInt("height");
 				int age = rs.getInt("age");
 				System.out.println("NAME = " + name);
 				System.out.println("PASSWORD = " + password);
@@ -85,7 +100,6 @@ public class LoginUI extends JFrame {
 					PickTypeUI ui = new PickTypeUI(user);
 					ui.run();
 					dispose();
-					validAccount = true;
 					System.out.println("Login successfully");
 					break;
 				}
@@ -93,11 +107,6 @@ public class LoginUI extends JFrame {
 			rs.close();
 			stmt.close();
 			c.close();
-			if(!validAccount) {
-				InformationUI informationUI = new InformationUI();
-				informationUI.run();
-				System.out.println("Please register your account");
-			}
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 		}

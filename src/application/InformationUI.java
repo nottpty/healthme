@@ -4,10 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -15,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import user.User;
@@ -36,11 +33,10 @@ public class InformationUI extends JFrame {
 	private String name, gender, activity;
 	private int age, weight, height;
 	private JLabel ageLabel, nameLabel, genderLabel, activityLabel, passwordLabel, weightLabel, heightLabel;
-	private JTextField nameTxt, ageTxt, passwordTxt, weightTxt, heightTxt;
+	private JTextField nameTxt, ageTxt, weightTxt, heightTxt;
 	private JComboBox<String> genderBox, activityBox;
 	private JButton enterBtn, backBtn;
-	private Connection connect = null;
-	private Statement s = null;
+	private JPasswordField passwordTxt;
 
 	private User user;
 
@@ -65,23 +61,24 @@ public class InformationUI extends JFrame {
 		heightLabel = new JLabel("Height: ");
 		passwordLabel = new JLabel("Password: ");
 
-		String[] genderArr = {"Male", "Female"};
-		String[] activityArr = {"Sedentary", "Lightly Active", "Moderately Active", "Very Active", "Extremely Active"};
+		String[] genderArr = { "Male", "Female" };
+		String[] activityArr = { "Sedentary", "Lightly Active", "Moderately Active", "Very Active",
+				"Extremely Active" };
 		genderBox = new JComboBox<String>(genderArr);
 		activityBox = new JComboBox<String>(activityArr);
-		passwordTxt = new JTextField(15);
+		passwordTxt = new JPasswordField(15);
 		weightTxt = new JTextField(5);
 		heightTxt = new JTextField(5);
 		nameTxt = new JTextField(10);
 		ageTxt = new JTextField(5);
 		enterBtn = new JButton("ENTER");
-		
+
 		ageLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		genderLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		activityLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		genderBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		
+
 		enterBtn.setBackground(new Color(59, 89, 182));
 		enterBtn.setForeground(Color.WHITE);
 		enterBtn.setFocusPainted(false);
@@ -104,7 +101,7 @@ public class InformationUI extends JFrame {
 				activity = activityBox.getSelectedItem() + "";
 				weight = Integer.parseInt(weightTxt.getText());
 				height = Integer.parseInt(heightTxt.getText());
-				
+
 				// Create User
 				user = new User(name, gender, age, weight, height, activity);
 				insertToDatabase(user);
@@ -124,7 +121,7 @@ public class InformationUI extends JFrame {
 		JPanel panel6 = new JPanel();
 		JPanel panel7 = new JPanel();
 		JPanel panel = new JPanel();
-		
+
 		panel0.add(nameLabel);
 		panel0.add(nameTxt);
 		panel1.add(passwordLabel);
@@ -141,7 +138,7 @@ public class InformationUI extends JFrame {
 		panel6.add(activityBox);
 		panel7.add(backBtn);
 		panel7.add(enterBtn);
-		
+
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.add(panel0);
 		panel.add(panel1);
@@ -168,9 +165,10 @@ public class InformationUI extends JFrame {
 			System.out.println("Opened database successfully");
 
 			stmt = c.createStatement();
-			String sql = "INSERT INTO USER (NAME,PASSWORD,GENDER,ACTIVITY,AGE) " + "VALUES (" + '\'' + user.getName() + '\'' + "," + '\''
-					+ "password" + '\'' + "," + '\'' + user.getGender() + '\'' + "," + '\'' + user.getActivity()
-					+ '\'' + "," + '\'' + user.getAge() + '\'' + ");";
+			String sql = "INSERT INTO USER (NAME,PASSWORD,GENDER,WEIGHT,HEIGHT,ACTIVITY,AGE) " + "VALUES (" + '\''
+					+ user.getName().trim() + '\'' + "," + '\'' + passwordTxt.getText() + '\'' + "," + '\'' + user.getGender()
+					+ '\'' + "," + '\'' + user.getWeight() + '\'' + "," + '\'' + user.getHeight() + '\'' + "," + '\''
+					+ user.getActivity() + '\'' + "," + '\'' + user.getAge() + '\'' + ");";
 			stmt.executeUpdate(sql);
 
 			stmt.close();

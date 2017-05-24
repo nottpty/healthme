@@ -13,10 +13,10 @@ public class Main {
 	public static void main(String[] args) {
 		Main main = new Main();
 		main.connectDatabase();
-//	    LoginUI loginUI = new LoginUI();
-//	    loginUI.run();
-	    StartUI startPage = new StartUI();
-		startPage.run();
+	    LoginUI loginUI = new LoginUI();
+	    loginUI.run();
+//	    StartUI startPage = new StartUI();
+//		startPage.run();
 	}
 	
 	public void connectDatabase() {
@@ -31,7 +31,9 @@ public class Main {
 	      String sql = "CREATE TABLE USER " +
 	                   "(NAME           TEXT    NOT NULL, " +
 	                   " PASSWORD       TEXT    NOT NULL, " +
-	                   " GENDER         TEXT    NOT NULL, " + 
+	                   " GENDER         TEXT    NOT NULL, " +
+	                   " WEIGHT         INT    NOT NULL, " +
+	                   " HEIGHT         TEXT    NOT NULL, " +
 	                   " ACTIVITY       TEXT    NOT NULL, " +
 	                   " AGE        INT)"; 
 	      stmt.executeUpdate(sql);
