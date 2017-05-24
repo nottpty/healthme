@@ -88,6 +88,7 @@ public class EditUserUI extends JFrame {
 				user.setWeight(Integer.parseInt(weightTxt.getText()));
 				user.setHeight(Integer.parseInt(heightTxt.getText()));
 				user.setActivity(activityBox.getSelectedItem() + "");
+				user.caloriesNeeded();
 				updateDatabase();
 				
 				PickTypeUI pickTypeUI = new PickTypeUI(user);
