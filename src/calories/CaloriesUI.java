@@ -41,7 +41,7 @@ public class CaloriesUI extends JFrame {
 	private JButton addBtn, addThaiBtn, backBtn;
 	
 	// All calories that been added.
-	private int totalCalories;
+	private double totalCalories;
 	
 	/**
 	 * Create calories user interface.
@@ -106,11 +106,11 @@ public class CaloriesUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String foodSelected = foodBox.getSelectedItem() + "";
-				int calories = food.getFood().get(foodSelected);
+				double calories = food.getFood().get(foodSelected);
 				
 				// Update total calories that eaten.
 				totalCalories += calories;
-				int updateCal = user.getCaloriesNeeded() - calories;
+				double updateCal = user.getCaloriesNeeded() - calories;
 				user.setCaloriesNeeded(updateCal);
 				caloriesNeedLabel.setText(updateCal + " KCal remaining");
 				leftTextArea.append(foodBox.getSelectedItem()+"\n");
@@ -122,11 +122,11 @@ public class CaloriesUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String foodSelected = thaifoodBox.getSelectedItem() + "";
-				int calories = food.getThaiFood().get(foodSelected);
+				double calories = food.getThaiFood().get(foodSelected);
 				
 				// Update total calories that eaten.
 				totalCalories += calories;
-				int updateCal = user.getCaloriesNeeded() - calories;
+				double updateCal = user.getCaloriesNeeded() - calories;
 				user.setCaloriesNeeded(updateCal);
 				caloriesNeedLabel.setText(updateCal + " KCal remaining");
 				leftTextArea.append(thaifoodBox.getSelectedItem()+"\n");

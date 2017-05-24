@@ -80,7 +80,7 @@ public class LoginUI extends JFrame {
 				System.out.println("NAME = " + name);
 				System.out.println("PASSWORD = " + password);
 				if (passwordTextfield.getText().equals(password) && name.equals(nameTextfield.getText())) {
-					user = new User(name, gender, activity, age);
+					user = new User(name, gender, age, weight, height, activity);
 					user.caloriesNeeded();
 					PickTypeUI ui = new PickTypeUI(user);
 					ui.run();

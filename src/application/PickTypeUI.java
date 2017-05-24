@@ -72,19 +72,19 @@ public class PickTypeUI extends JFrame {
 		heightLabel = new JLabel();
 		
 		caloriesBar = new JProgressBar(0, 2000);
-		caloriesBar.setMaximumSize(new Dimension(0, user.getfinalCalories()));
-		caloriesBar.setValue(user.getCalories());
+		caloriesBar.setMaximumSize(new Dimension(0, (int)user.getfinalCalories()));
+		caloriesBar.setValue((int)user.getCalories());
 		caloriesBar.setStringPainted(true);
 		
-		caloriesBar.setPreferredSize(new Dimension(700, 50));
-		nameLabel.setPreferredSize(new Dimension(150, 100));
-		ageLabel.setPreferredSize(new Dimension(100, 100));
-		genderLabel.setPreferredSize(new Dimension(100, 100));
-		todayCaloriesLabel.setPreferredSize(new Dimension(150, 100));
-		weightLabel.setPreferredSize(new Dimension(100, 100));
-		heightLabel.setPreferredSize(new Dimension(100, 100));
-		caloriesBtn.setPreferredSize(new Dimension(350, 200));
-		absiBtn.setPreferredSize(new Dimension(350, 200));
+//		caloriesBar.setPreferredSize(new Dimension(700, 50));
+//		nameLabel.setPreferredSize(new Dimension(120, 100));
+//		ageLabel.setPreferredSize(new Dimension(75, 100));
+//		genderLabel.setPreferredSize(new Dimension(100, 100));
+//		todayCaloriesLabel.setPreferredSize(new Dimension(150, 100));
+//		weightLabel.setPreferredSize(new Dimension(100, 100));
+//		heightLabel.setPreferredSize(new Dimension(100, 100));
+//		caloriesBtn.setPreferredSize(new Dimension(400, 200));
+//		absiBtn.setPreferredSize(new Dimension(350, 200));
 		
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));	
 		ageLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -104,7 +104,7 @@ public class PickTypeUI extends JFrame {
 		nameLabel.setText("Username: " + user.getName());
 		ageLabel.setText("Age: " + user.getAge());
 		genderLabel.setText("Gender: " + user.getGender());
-		todayCaloriesLabel.setText("Calories: " + user.getCalories() + "/" + user.getfinalCalories());
+		todayCaloriesLabel.setText("Calories: " + (int)user.getCalories() + "/" + (int)user.getfinalCalories());
 		weightLabel.setText("Weight: " + user.getWeight());
 		heightLabel.setText("Height: " + user.getHeight());
 		
@@ -157,6 +157,7 @@ public class PickTypeUI extends JFrame {
 		
 		this.add(centerPanel, BorderLayout.CENTER);
 		this.add(southPanel, BorderLayout.SOUTH);
+		this.pack();
 	}
 	
 	public void run() {

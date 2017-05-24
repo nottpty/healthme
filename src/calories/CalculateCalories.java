@@ -1,521 +1,63 @@
 package calories;
 
 /**
- * Calculate calories that needed per day.
- * Data from https://www.cnpp.usda.gov/sites/default/files/usda_food_patterns/EstimatedCalorieNeedsPerDayTable.pdf
+ * Calculate calories that needed per day. references :
+ * http://www.superskinnyme.com/calculate-tdee.html
+ * 
  * @author Narut Poovorakit
  *
- * @version 20.05.2017
+ * @version 24.05.2017
  */
 public class CalculateCalories {
 
 	/**
 	 * Calculate a needed calories of user each day.
-	 * @param gender is a given gender (male, female)
-	 * @param age is a given age
-	 * @param activity is a given activity (sedentary, moderate, active)
+	 * 
+	 * @param gender
+	 *            is a given gender (male, female)
+	 * @param age
+	 *            is a given age
+	 * @param activity
+	 *            is a given activity (sedentary, moderate, active)
 	 * @return a result of calories needed per day.
 	 */
-	public int calculateCal(String gender, int age, String activity) {
-		int calories = 0;
-		if (age >= 1 && age <= 2) {
-			calories = 1000;
+	public double calculateCal(String gender, int age, int weight, int height, String activity) {
+		// formula of calories needed = BMR * TDEE
+		double calories = 0;
+
+		System.out.println(weight);
+		System.out.println(height);
+		System.out.println(age);
+		// BMR formula
+		if (gender.equalsIgnoreCase("female")) {
+			calories = 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age);
+			System.out.println("Calories:" + calories);
+		} else {
+			calories = 66 + (13.7 * weight) + (5 * height) - (6.8 * age);
+			System.out.println(calories);
 		}
 
-		else if (age == 3) {
-			if (gender.equalsIgnoreCase("Male")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1200;
-				}
-
-				if (activity.equalsIgnoreCase("Moderately Active")) {
-					calories = 1400;
-				}
-
-				if (activity.equalsIgnoreCase("Active")) {
-					calories = 1600;
-				}
-			}
-
-			if (gender.equalsIgnoreCase("Female")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1200;
-				}
-
-				if (activity.equalsIgnoreCase("Moderately Active")) {
-					calories = 1400;
-				}
-
-				if (activity.equalsIgnoreCase("Active")) {
-					calories = 1400;
-				}
-			}
+		// TDEE
+		// Sedentary is Little or no Exercise/desk job
+		if (activity.equalsIgnoreCase("Sedentary")) {
+			calories *= 1.2;
 		}
-
-		else if (age == 4) {
-			if (activity.equalsIgnoreCase("Sedentary")) {
-				calories = 1200;
-			}
-
-			if (activity.equalsIgnoreCase("Moderately Active")) {
-				calories = 1400;
-			}
-
-			if (activity.equalsIgnoreCase("active")) {
-				calories = 1600;
-			}
+		// Light exercise/sports 1 – 3 days/ week
+		if (activity.equalsIgnoreCase("Lightly active")) {
+			calories *= 1.375;
 		}
-
-		else if (age == 5) {
-			if (gender.equalsIgnoreCase("Male")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1400;
-				}
-
-				if (activity.equalsIgnoreCase("Moderately Active")) {
-					calories = 1600;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 1800;
-				}
-			}
-
-			if (gender.equalsIgnoreCase("Female")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1200;
-				}
-
-				if (activity.equalsIgnoreCase("moderately active")) {
-					calories = 1400;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 1600;
-				}
-			}
+		// Moderate Exercise, sports 3 – 5 days/ week
+		if (activity.equalsIgnoreCase("Moderately active")) {
+			calories *= 1.55;
 		}
-
-		else if (age == 6) {
-			if (gender.equalsIgnoreCase("Male")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1400;
-				}
-
-				if (activity.equalsIgnoreCase("Moderately Active")) {
-					calories = 1600;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 1800;
-				}
-			}
-
-			if (gender.equalsIgnoreCase("Female")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1200;
-				}
-
-				if (activity.equalsIgnoreCase("moderately active")) {
-					calories = 1600;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 1800;
-				}
-			}
+		// Heavy Exercise/ sports 6 – 7 days/ week
+		if (activity.equalsIgnoreCase("Very active")) {
+			calories *= 1.725;
 		}
-
-		else if (age == 7) {
-			if (gender.equalsIgnoreCase("Male")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1400;
-				}
-
-				if (activity.equalsIgnoreCase("Moderately Active")) {
-					calories = 1600;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2000;
-				}
-			}
-
-			if (gender.equalsIgnoreCase("Female")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1400;
-				}
-
-				if (activity.equalsIgnoreCase("moderately active")) {
-					calories = 1600;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 1800;
-				}
-			}
+		// Very heavy exercise/ physical job
+		if (activity.equalsIgnoreCase("extremely active")) {
+			calories *= 1.9;
 		}
-
-		else if (age >= 8 && age <= 10) {
-			if (gender.equalsIgnoreCase("Male")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1600;
-				}
-
-				if (activity.equalsIgnoreCase("Moderately Active")) {
-					calories = 1800;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2000;
-				}
-			}
-
-			if (gender.equalsIgnoreCase("Female")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1400;
-				}
-
-				if (activity.equalsIgnoreCase("moderately active")) {
-					calories = 1600;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 1800;
-				}
-			}
-		}
-
-		else if (age == 11) {
-			if (gender.equalsIgnoreCase("Male")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1800;
-				}
-
-				if (activity.equalsIgnoreCase("Moderately Active")) {
-					calories = 2000;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2200;
-				}
-			}
-
-			if (gender.equalsIgnoreCase("Female")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1600;
-				}
-
-				if (activity.equalsIgnoreCase("moderately active")) {
-					calories = 1800;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2000;
-				}
-			}
-		}
-
-		else if (age == 12) {
-			if (gender.equalsIgnoreCase("Male")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1800;
-				}
-
-				if (activity.equalsIgnoreCase("Moderately Active")) {
-					calories = 2200;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2400;
-				}
-			}
-
-			if (gender.equalsIgnoreCase("Female")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1600;
-				}
-
-				if (activity.equalsIgnoreCase("moderately active")) {
-					calories = 2000;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2200;
-				}
-			}
-		}
-
-		else if (age >= 13 && age <= 15) {
-			if (gender.equalsIgnoreCase("Male")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 2100;
-				}
-
-				if (activity.equalsIgnoreCase("Moderately Active")) {
-					calories = 2400;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2600;
-				}
-			}
-
-			if (gender.equalsIgnoreCase("Female")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1700;
-				}
-
-				if (activity.equalsIgnoreCase("moderately active")) {
-					calories = 2000;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2200;
-				}
-			}
-		}
-		
-		else if (age >= 16 && age <= 18) {
-			if (gender.equalsIgnoreCase("Male")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 2400;
-				}
-
-				if (activity.equalsIgnoreCase("Moderately Active")) {
-					calories = 2800;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 3200;
-				}
-			}
-
-			if (gender.equalsIgnoreCase("Female")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1800;
-				}
-
-				if (activity.equalsIgnoreCase("moderately active")) {
-					calories = 2000;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2400;
-				}
-			}
-		}
-
-		else if (age >= 19 && age <= 20) {
-			if (gender.equalsIgnoreCase("Male")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 2600;
-				}
-
-				if (activity.equalsIgnoreCase("Moderately Active")) {
-					calories = 2800;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 3000;
-				}
-			}
-
-			if (gender.equalsIgnoreCase("Female")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 2000;
-				}
-
-				if (activity.equalsIgnoreCase("moderately active")) {
-					calories = 2200;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2400;
-				}
-			}
-		}
-
-		else if (age >= 21 && age <= 25) {
-			if (gender.equalsIgnoreCase("Male")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 2400;
-				}
-
-				if (activity.equalsIgnoreCase("Moderately Active")) {
-					calories = 2800;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 3000;
-				}
-			}
-
-			if (gender.equalsIgnoreCase("Female")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 2000;
-				}
-
-				if (activity.equalsIgnoreCase("moderately active")) {
-					calories = 2200;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2400;
-				}
-			}
-		}
-
-		else if (age >= 26 && age <= 30) {
-			if (gender.equalsIgnoreCase("Male")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 2400;
-				}
-
-				if (activity.equalsIgnoreCase("Moderately Active")) {
-					calories = 2600;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 3000;
-				}
-			}
-
-			if (gender.equalsIgnoreCase("Female")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1800;
-				}
-
-				if (activity.equalsIgnoreCase("moderately active")) {
-					calories = 2000;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2400;
-				}
-			}
-		}
-
-		else if (age >= 31 && age <= 40) {
-			if (gender.equalsIgnoreCase("Male")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 2400;
-				}
-
-				if (activity.equalsIgnoreCase("Moderately Active")) {
-					calories = 2600;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 3000;
-				}
-			}
-
-			if (gender.equalsIgnoreCase("Female")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1800;
-				}
-
-				if (activity.equalsIgnoreCase("moderately active")) {
-					calories = 2000;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2200;
-				}
-			}
-		}
-		
-		else if (age >= 41 && age <= 50) {
-			if (gender.equalsIgnoreCase("Male")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 2200;
-				}
-
-				if (activity.equalsIgnoreCase("Moderately Active")) {
-					calories = 2600;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2800;
-				}
-			}
-
-			if (gender.equalsIgnoreCase("Female")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1800;
-				}
-
-				if (activity.equalsIgnoreCase("moderately active")) {
-					calories = 2000;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2200;
-				}
-			}
-		}
-
-		else if (age >= 51 && age <= 60) {
-			if (gender.equalsIgnoreCase("Male")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 2200;
-				}
-
-				if (activity.equalsIgnoreCase("Moderately Active")) {
-					calories = 2400;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2800;
-				}
-			}
-
-			if (gender.equalsIgnoreCase("Female")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1600;
-				}
-
-				if (activity.equalsIgnoreCase("moderately active")) {
-					calories = 1800;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2200;
-				}
-			}
-		}
-
-		else if (age >= 61) {
-			if (gender.equalsIgnoreCase("Male")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 2000;
-				}
-
-				if (activity.equalsIgnoreCase("Moderately Active")) {
-					calories = 2400;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2600;
-				}
-			}
-
-			if (gender.equalsIgnoreCase("Female")) {
-				if (activity.equalsIgnoreCase("Sedentary")) {
-					calories = 1600;
-				}
-
-				if (activity.equalsIgnoreCase("moderately active")) {
-					calories = 1800;
-				}
-
-				if (activity.equalsIgnoreCase("active")) {
-					calories = 2200;
-				}
-			}
-		}
-
 		return calories;
 	}
 }

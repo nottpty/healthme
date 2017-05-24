@@ -82,8 +82,8 @@ public class EditUserUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				user.setName(nameTxt.getText());
 				user.setAge(Integer.parseInt(ageTxt.getText()));
-				user.setWeight(Double.parseDouble(weightTxt.getText()));
-				user.setHeight(Double.parseDouble(heightTxt.getText()));
+				user.setWeight(Integer.parseInt(weightTxt.getText()));
+				user.setHeight(Integer.parseInt(heightTxt.getText()));
 				user.setGender(genderBox.getSelectedItem() + "");
 				System.out.println("Updated! " +
 				nameTxt.getText() + " " + ageTxt.getText() + " " +

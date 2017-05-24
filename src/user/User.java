@@ -18,27 +18,26 @@ public class User {
 	private String name, gender, activity;
 	
 	//waistcircum
-	private double weight, height, waistcircum;
+	private double waistcircum, calories, finalCalories, caloriesNeeded;
 	
 	// unit is Kcal
 	// references : https://authoritynutrition.com/how-many-calories-per-day/
-	private int calories, finalCalories, caloriesNeeded, age;
+	private int age, weight, height;
 	
 	/**
 	 * User with given name, gender, activity and age
 	 * @param name is a name of user 
 	 * @param gender is a gender (male, female)
-	 * @param activity is an activity that user do per day divided in 3 choice
-	 * Sedentary activity - Doesn't do much in that day (Ex. At home doesn't do anything that use energy) 
-	 * Moderate activity - Doing some of the activities that use energy. 
-	 * Active activity - Doing many activities that use a lot of energy (Ex. Play sports, doing exam)
+	 * @param activity is how often that user do exercise or activity in daily life.
 	 * @param age is an age of the user
 	 */
-	public User(String name, String gender, String activity, int age) {
+	public User(String name, String gender, int age, int weight, int height, String activity) {
 		this.name = name;
 		this.gender = gender;
 		this.activity = activity;
 		this.age = age;
+		this.weight = weight;
+		this.height = height;
 		calories = 0;
 		finalCalories = 0;
 		caloriesNeeded = 0;
@@ -48,9 +47,9 @@ public class User {
 	 * Get a calories needed calculate by using an information of user.
 	 * @return a calories needed
 	 */
-	public int caloriesNeeded() {
+	public double caloriesNeeded() {
 		CalculateCalories cal = new CalculateCalories();
-		caloriesNeeded = cal.calculateCal(gender, age, activity);
+		caloriesNeeded = cal.calculateCal(gender, age, weight, height, activity);
 		finalCalories = caloriesNeeded;
 		return caloriesNeeded;
 	}
@@ -65,7 +64,7 @@ public class User {
 	/**
 	 * return calories of user that eaten.
 	 */
-	public int getCalories() {
+	public double getCalories() {
 		return this.calories;
 	}
 	
@@ -114,21 +113,21 @@ public class User {
 	/**
 	 * return update calories needed per day.
 	 */
-	public int getCaloriesNeeded() {
+	public double getCaloriesNeeded() {
 		return this.caloriesNeeded;
 	}
 
 	/**
 	 * return final calories that needed per day.
 	 */
-	public int getfinalCalories() {
+	public double getfinalCalories() {
 		return this.finalCalories;
 	}
 	
 	/**
 	 * Update final calories.
 	 */
-	public void setfinalCalories(int finalCalories) {
+	public void setfinalCalories(double finalCalories) {
 		this.finalCalories = finalCalories;
 	}
 	
@@ -149,14 +148,14 @@ public class User {
 	/**
 	 * Set a new weight.
 	 */
-	public void setWeight(double weight) {
+	public void setWeight(int weight) {
 		this.weight = weight;
 	}
 	
 	/**
 	 * Set a new height.
 	 */
-	public void setHeight(double height) {
+	public void setHeight(int height) {
 		this.height = height;
 	}
 	
@@ -184,14 +183,14 @@ public class User {
 	/**
 	 * Update calories that needed per day.
 	 */
-	public void setCaloriesNeeded(int caloriesNeed) {
+	public void setCaloriesNeeded(double caloriesNeed) {
 		this.caloriesNeeded = caloriesNeed;
 	}
 	
 	/**
 	 * Set a calories that eaten that day.
 	 */
-	public void setCalories(int calories) {
+	public void setCalories(double calories) {
 		this.calories = calories;
 	}
 }
