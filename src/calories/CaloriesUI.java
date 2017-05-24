@@ -79,7 +79,7 @@ public class CaloriesUI extends JFrame {
 		leftTextArea.setFont(leftTextArea.getFont().deriveFont(25f));
 		rightTextArea.setFont(leftTextArea.getFont().deriveFont(25f));
 		
-		caloriesNeedLabel.setText(user.getCaloriesNeeded() + " KCal remaining");
+		caloriesNeedLabel.setText((int)user.getCaloriesNeeded() + " KCal remaining");
 		caloriesNeedLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		backBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
@@ -112,7 +112,7 @@ public class CaloriesUI extends JFrame {
 				totalCalories += calories;
 				double updateCal = user.getCaloriesNeeded() - calories;
 				user.setCaloriesNeeded(updateCal);
-				caloriesNeedLabel.setText(updateCal + " KCal remaining");
+				caloriesNeedLabel.setText((int)updateCal + " KCal remaining");
 				leftTextArea.append(foodBox.getSelectedItem()+"\n");
 				rightTextArea.append(calories + " KCal\n");
 			}
@@ -128,7 +128,7 @@ public class CaloriesUI extends JFrame {
 				totalCalories += calories;
 				double updateCal = user.getCaloriesNeeded() - calories;
 				user.setCaloriesNeeded(updateCal);
-				caloriesNeedLabel.setText(updateCal + " KCal remaining");
+				caloriesNeedLabel.setText((int)updateCal + " KCal remaining");
 				leftTextArea.append(thaifoodBox.getSelectedItem()+"\n");
 				rightTextArea.append(calories + " KCal\n");
 			}
