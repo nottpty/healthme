@@ -11,14 +11,12 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 import absi.Absi;
-import javafx.scene.shape.Box;
 import user.User;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
 

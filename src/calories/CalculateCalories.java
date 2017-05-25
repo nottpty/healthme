@@ -24,17 +24,12 @@ public class CalculateCalories {
 	public double calculateCal(String gender, int age, int weight, int height, String activity) {
 		// formula of calories needed = BMR * activity
 		double calories = 0;
-
-		System.out.println(weight);
-		System.out.println(height);
-		System.out.println(age);
 		// BMR formula
 		if (gender.equalsIgnoreCase("female")) {
 			calories = 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age);
 			System.out.println("Calories:" + calories);
 		} else {
 			calories = 66 + (13.7 * weight) + (5 * height) - (6.8 * age);
-			System.out.println(calories);
 		}
 
 		// TDEE
@@ -42,15 +37,15 @@ public class CalculateCalories {
 		if (activity.equalsIgnoreCase("Sedentary")) {
 			calories *= 1.2;
 		}
-		// Light exercise/sports 1 – 3 days/ week
+		// Light exercise/sports 1 ï¿½ 3 days/ week
 		if (activity.equalsIgnoreCase("Lightly active")) {
 			calories *= 1.375;
 		}
-		// Moderate Exercise, sports 3 – 5 days/ week
+		// Moderate Exercise, sports 3 ï¿½ 5 days/ week
 		if (activity.equalsIgnoreCase("Moderately active")) {
 			calories *= 1.55;
 		}
-		// Heavy Exercise/ sports 6 – 7 days/ week
+		// Heavy Exercise/ sports 6 ï¿½ 7 days/ week
 		if (activity.equalsIgnoreCase("Very active")) {
 			calories *= 1.725;
 		}

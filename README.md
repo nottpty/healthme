@@ -1,9 +1,5 @@
 # Health Me
 
-## Author
-* **Patinya Yongyai**
-* **Narut Poovorakit**
-
 ## Description
   An application that calculate calories and ABSI index to find the mortality risk or the calories needed per day. The user must input the information to fulfill the method that using these information to calculate. The application can be separate in 2 parts, ABSI part and calories part.
 
@@ -18,3 +14,28 @@
 
 ## ABSI
   ABSI is similar to the BMI index that we usually test when we study PE (Physical education). But ABSI is more accurate, specific than BMI. The result will show the mortality risk of that person.
+
+## Prerequisites
+```
+Java JDK 7+
+```
+
+## Database
+```  
+SQLite
+```
+
+## How to run
+1. Jar file
+```
+HealthMe.jar
+```
+2. Compile by IDE(i.e. eclipse)
+```
+Main.java
+```
+
+
+## Authors
+* **Patinya Yongyai**
+* **Narut Poovorakit**
