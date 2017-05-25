@@ -15,6 +15,24 @@
 ## ABSI
   ABSI is similar to the BMI index that we usually test when we study PE (Physical education). But ABSI is more accurate, specific than BMI. The result will show the mortality risk of that person.
 
+## UML Diagram
+![alt text](https://www.mx7.com/i/197/6dRT66.png)
+
+## Screenshot
+![alt text](https://www.mx7.com/i/1f8/9Obyfr.png)
+
+![alt text](https://www.mx7.com/i/1fa/U29ErA.png)
+
+![alt text](https://www.mx7.com/i/119/lCXZvh.png)
+
+![alt text](https://www.mx7.com/i/b1c/wWgE7B.png)
+
+![alt text](https://www.mx7.com/i/b1c/wWgE7B.png)
+
+![alt text](https://www.mx7.com/i/b3a/l0ASy4.png)
+
+![alt text](https://www.mx7.com/i/bae/hDcrXl.png)
+
 ## Prerequisites
 ```
 Java JDK 7+
