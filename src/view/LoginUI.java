@@ -39,7 +39,7 @@ public class LoginUI extends JFrame {
 	 * To create user interface of login.
 	 */
 	public LoginUI() {
-		this.setTitle("HealthMe Login");
+		this.setTitle("Login");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -53,7 +53,8 @@ public class LoginUI extends JFrame {
 		this.setLayout(new GridLayout(4, 2));
 		titleLabel = new JLabel("HealthMe", SwingConstants.CENTER);
 		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		// titleLabel.setBounds(0, 0, 784, 242);
+		titleLabel.setForeground(Color.WHITE);
+		
 		loginLabel = new JLabel("Your name: ");
 		nameTextfield = new JTextField(15);
 		passwordLabel = new JLabel("  Password: ");
@@ -78,7 +79,7 @@ public class LoginUI extends JFrame {
 		});
 
 		Panel panel0 = new Panel(new FlowLayout());
-		panel0.setBackground(Color.WHITE);
+		panel0.setBackground(Color.BLACK);
 		Panel panel1 = new Panel(new FlowLayout());
 		panel1.setBackground(Color.WHITE);
 		Panel panel2 = new Panel(new FlowLayout());

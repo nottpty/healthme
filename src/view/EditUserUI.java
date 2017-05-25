@@ -32,7 +32,7 @@ public class EditUserUI extends JFrame {
 	private JLabel nameLabel, ageLabel, weightLabel, heightLabel, activityLabel;
 	private JTextField nameTxt, ageTxt, weightTxt, heightTxt;
 	private JComboBox<String> activityBox;
-	private JButton saveBtn;
+	private JButton saveBtn, backBtn;
 	
 	/**
 	 * Create UI with given user
@@ -60,6 +60,7 @@ public class EditUserUI extends JFrame {
 		heightLabel = new JLabel();
 		heightTxt = new JTextField(10);
 		saveBtn = new JButton("Save");
+		backBtn = new JButton("Back");
 		
 		heightLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		heightTxt.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -71,6 +72,7 @@ public class EditUserUI extends JFrame {
 		weightTxt.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		saveBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		backBtn.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		ageLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		ageTxt.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
@@ -95,6 +97,15 @@ public class EditUserUI extends JFrame {
 				user.caloriesNeeded();
 				updateDatabase();
 				
+				PickTypeUI pickTypeUI = new PickTypeUI(user);
+				pickTypeUI.run();
+				dispose();
+			}
+		});
+		
+		backBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 				PickTypeUI pickTypeUI = new PickTypeUI(user);
 				pickTypeUI.run();
 				dispose();
@@ -126,6 +137,7 @@ public class EditUserUI extends JFrame {
 		agePanel.add(ageTxt);
 		
 		JPanel heightPanel = new JPanel();
+		JPanel buttonPanel = new JPanel();
 		heightPanel.setBackground(Color.WHITE);
 		weightPanel.add(heightPanel);
 		heightPanel.add(heightLabel);
@@ -133,9 +145,10 @@ public class EditUserUI extends JFrame {
 		panel.add(namePanel);
 		panel.add(weightPanel);
 		panel.add(genderPanel);
-		panel.add(saveBtn);
+		buttonPanel.add(backBtn);
+		buttonPanel.add(saveBtn);
+		panel.add(buttonPanel);
 		this.getContentPane().add(panel);
-		
 	}
 	
 	/**

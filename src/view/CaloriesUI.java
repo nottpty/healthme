@@ -86,7 +86,7 @@ public class CaloriesUI extends JFrame {
 		if (!user.getFoodList().isEmpty()) {
 			for (String s : user.getFoodList().keySet()) {
 				leftTextArea.append(s + "\n");
-				rightTextArea.append(user.getFoodList().get(s) + "\n");
+				rightTextArea.append(user.getFoodList().get(s) + " KCal \n");
 			}
 		}
 		
@@ -203,8 +203,8 @@ public class CaloriesUI extends JFrame {
 		textAreaPanel.add(leftscroll);
 		textAreaPanel.add(rightscroll);
 		panel.add(textAreaPanel);
-		panel.add(backBtn);
 		panel.add(caloriesNeedLabel);
+		panel.add(backBtn);
 		this.add(panel);
 	}
 

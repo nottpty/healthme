@@ -16,6 +16,7 @@ import user.User;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -78,24 +79,29 @@ public class PickTypeUI extends JFrame {
 		heightLabel = new JLabel();
 		
 		caloriesBar = new JProgressBar(0, 2000);
+		caloriesBar.setPreferredSize(new Dimension(600, 50));
 		caloriesBar.setMaximumSize(new Dimension(0, (int)user.getfinalCalories()));
 		caloriesBar.setValue((int)user.getCalories());
 		caloriesBar.setStringPainted(true);
+		caloriesBar.setForeground(Color.CYAN);
 		
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));	
 		ageLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		genderLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		todayCaloriesLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		todayCaloriesLabel.setFont(new Font("Tahoma", Font.PLAIN, 66));
+		todayCaloriesLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		weightLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		heightLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		absiBtn.setBackground(new Color(59, 89, 182));
 		absiBtn.setForeground(Color.WHITE);
 		absiBtn.setOpaque(true);
 		absiBtn.setBorderPainted(false);
+		absiBtn.setPreferredSize(new Dimension(300, 100));
 		caloriesBtn.setBackground(new Color(59, 89, 182));
 		caloriesBtn.setForeground(Color.WHITE);
 		caloriesBtn.setOpaque(true);
 		caloriesBtn.setBorderPainted(false);
+		caloriesBtn.setPreferredSize(new Dimension(300, 100));
 		
 		nameLabel.setText("Username: " + user.getName());
 		ageLabel.setText("Age: " + user.getAge());
@@ -140,9 +146,9 @@ public class PickTypeUI extends JFrame {
 		labelPanel.add(genderLabel);
 		labelPanel.add(weightLabel);
 		labelPanel.add(heightLabel);
-		labelPanel.add(todayCaloriesLabel);
 		progressPanel.add(caloriesBar);
 		northPanel.add(labelPanel);
+		northPanel.add(todayCaloriesLabel);
 		northPanel.add(progressPanel);
 		centerPanel.add(absiBtn);
 		centerPanel.add(caloriesBtn);

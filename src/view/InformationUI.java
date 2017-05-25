@@ -80,7 +80,9 @@ public class InformationUI extends JFrame {
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		genderLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		activityLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		genderBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		passwordLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		weightLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		heightLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		enterBtn.setBackground(new Color(59, 89, 182));
 		enterBtn.setForeground(Color.WHITE);
