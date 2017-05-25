@@ -15,23 +15,21 @@
 ## ABSI
   ABSI is similar to the BMI index that we usually test when we study PE (Physical education). But ABSI is more accurate, specific than BMI. The result will show the mortality risk of that person.
 
-## UML Diagram
-![alt text](https://www.mx7.com/i/197/6dRT66.png)
+  ## UML Diagram
+  ![d09d60c93f41f30aac5ac4dda97bd97e.png](https://www.img.in.th/images/d09d60c93f41f30aac5ac4dda97bd97e.png)
 
-## Screenshot
-![alt text](https://www.mx7.com/i/1f8/9Obyfr.png)
+  ## Screenshot
+  [![112ea66f4d99419b0e630014b623d8b9.md.png](https://www.img.in.th/images/112ea66f4d99419b0e630014b623d8b9.md.png)](https://www.img.in.th/image/fsjY)
 
-![alt text](https://www.mx7.com/i/1fa/U29ErA.png)
+  [![889d54602e6330a3f3434e8b1d3c31c3.md.png](https://www.img.in.th/images/889d54602e6330a3f3434e8b1d3c31c3.md.png)](https://www.img.in.th/image/fsjF)
 
-![alt text](https://www.mx7.com/i/119/lCXZvh.png)
+  [![3d261a4b229d960caf8ddbfd615d6c9b.md.png](https://www.img.in.th/images/3d261a4b229d960caf8ddbfd615d6c9b.md.png)](https://www.img.in.th/image/fsjL)
 
-![alt text](https://www.mx7.com/i/b1c/wWgE7B.png)
+  [![9304365e65b81f87726e5f5c0a752c5f.md.png](https://www.img.in.th/images/9304365e65b81f87726e5f5c0a752c5f.md.png)](https://www.img.in.th/image/fsjQ)
 
-![alt text](https://www.mx7.com/i/b1c/wWgE7B.png)
+  [![a51c08e77498577fb72d0ca59f7e6a22.png](https://www.img.in.th/images/a51c08e77498577fb72d0ca59f7e6a22.png)](https://www.img.in.th/image/fsje)
 
-![alt text](https://www.mx7.com/i/b3a/l0ASy4.png)
-
-![alt text](https://www.mx7.com/i/bae/hDcrXl.png)
+  [![075ad0fb9a553958d74ad6551c50b39b.md.png](https://www.img.in.th/images/075ad0fb9a553958d74ad6551c50b39b.md.png)](https://www.img.in.th/image/fsjt)
 
 ## Prerequisites
 ```
