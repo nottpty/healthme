@@ -8,6 +8,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import javax.swing.BoxLayout;
@@ -41,8 +43,10 @@ public class CaloriesUI extends JFrame {
 	private JLabel caloriesNeedLabel, interFoodLabel, thaiFoodLabel;
 	private JButton addBtn, addThaiBtn, backBtn;
 	
+	private Map<String, Double> foodList; 
 	// All calories that been added.
 	private double totalCalories;
+	private boolean checkAddFood = false;
 	
 	/**
 	 * Create calories user interface.
@@ -51,6 +55,7 @@ public class CaloriesUI extends JFrame {
 	public CaloriesUI(User user) {
 		this.user = user;
 		totalCalories = user.getCalories();
+		foodList = new HashMap<String, Double>();
 		this.setTitle("HealthME");
 		this.setSize(800, 450);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -77,6 +82,14 @@ public class CaloriesUI extends JFrame {
 		rightTextArea.setSize(200, 200);
 		leftTextArea.setText("Food name :\n");
 		rightTextArea.setText("Calories :\n");
+		
+		if (!user.getFoodList().isEmpty()) {
+			for (String s : user.getFoodList().keySet()) {
+				leftTextArea.append(s + "\n");
+				rightTextArea.append(user.getFoodList().get(s) + "\n");
+			}
+		}
+		
 		leftTextArea.setFont(leftTextArea.getFont().deriveFont(25f));
 		rightTextArea.setFont(leftTextArea.getFont().deriveFont(25f));
 		
@@ -114,8 +127,10 @@ public class CaloriesUI extends JFrame {
 				double updateCal = user.getCaloriesNeeded() - calories;
 				user.setCaloriesNeeded(updateCal);
 				caloriesNeedLabel.setText((int)updateCal + " KCal remaining");
-				leftTextArea.append(foodBox.getSelectedItem()+"\n");
+				leftTextArea.append(foodSelected + "\n");
 				rightTextArea.append(calories + " KCal\n");
+				foodList.put(foodSelected, calories);
+				checkAddFood = true;
 			}
 		});
 		
@@ -130,8 +145,10 @@ public class CaloriesUI extends JFrame {
 				double updateCal = user.getCaloriesNeeded() - calories;
 				user.setCaloriesNeeded(updateCal);
 				caloriesNeedLabel.setText((int)updateCal + " KCal remaining");
-				leftTextArea.append(thaifoodBox.getSelectedItem()+"\n");
+				leftTextArea.append(foodSelected + "\n");
 				rightTextArea.append(calories + " KCal\n");
+				foodList.put(foodSelected, calories);
+				checkAddFood = true;
 			}
 		});
 		
@@ -139,6 +156,9 @@ public class CaloriesUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				user.setCalories(totalCalories);
+				if (checkAddFood) {
+					user.setFoodList(foodList);
+				}
 				PickTypeUI ui = new PickTypeUI(user);
 				ui.run();
 				dispose();

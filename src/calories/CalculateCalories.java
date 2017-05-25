@@ -22,7 +22,7 @@ public class CalculateCalories {
 	 * @return a result of calories needed per day.
 	 */
 	public double calculateCal(String gender, int age, int weight, int height, String activity) {
-		// formula of calories needed = BMR * TDEE
+		// formula of calories needed = BMR * activity
 		double calories = 0;
 
 		System.out.println(weight);

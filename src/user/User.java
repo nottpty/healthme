@@ -1,5 +1,8 @@
 package user;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import calories.CalculateCalories;
 
 /**
@@ -24,6 +27,8 @@ public class User {
 	// references : https://authoritynutrition.com/how-many-calories-per-day/
 	private int age, weight, height;
 	
+	private Map<String, Double> foodList;
+	
 	/**
 	 * User with given name, gender, activity and age
 	 * @param name is a name of user 
@@ -38,6 +43,7 @@ public class User {
 		this.age = age;
 		this.weight = weight;
 		this.height = height;
+		foodList = new HashMap<String, Double>();
 		calories = 0;
 		finalCalories = 0;
 		caloriesNeeded = 0;
@@ -124,6 +130,19 @@ public class User {
 		return this.finalCalories;
 	}
 	
+	/**
+	 * return a food list that been add in that day
+	 */
+	public Map<String, Double> getFoodList() {
+		return this.foodList;
+	}
+	
+	/**
+	 * Update a new list of food.
+	 */
+	public void setFoodList(Map<String, Double> foodList) {
+		this.foodList = foodList;
+	}
 	/**
 	 * Update final calories.
 	 */
