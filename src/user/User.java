@@ -84,14 +84,14 @@ public class User {
 	/**
 	 * return weight of user.
 	 */
-	public double getWeight() {
+	public int getWeight() {
 		return this.weight;
 	}
 	
 	/**
 	 * return height of user.
 	 */
-	public double getHeight() {
+	public int getHeight() {
 		return this.height;
 	}
 	

@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -79,7 +80,7 @@ public class EditUserUI extends JFrame {
 		saveBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		heightLabel.setText("Height: ");
-		nameLabel.setText("Name: ");
+		nameLabel.setText("Username: ");
 		weightLabel.setText("Weight: ");
 		activityLabel.setText("Activity: ");
 		ageLabel.setText("Age: ");
@@ -90,13 +91,17 @@ public class EditUserUI extends JFrame {
 		saveBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				user.setAge(Integer.parseInt(ageTxt.getText()));
-				user.setWeight(Integer.parseInt(weightTxt.getText()));
-				user.setHeight(Integer.parseInt(heightTxt.getText()));
-				user.setActivity(activityBox.getSelectedItem() + "");
+				if (!ageTxt.getText().isEmpty()) 
+					user.setAge(Integer.parseInt(ageTxt.getText()));
+				if (!weightTxt.getText().isEmpty()) 
+					user.setWeight(Integer.parseInt(weightTxt.getText()));
+				if (!heightTxt.getText().isEmpty())
+					user.setHeight(Integer.parseInt(heightTxt.getText()));
+				if (activityBox.getSelectedItem() != null)
+					user.setActivity(activityBox.getSelectedItem() + "");
 				user.caloriesNeeded();
 				updateDatabase();
-				
+				JOptionPane.showMessageDialog(null, "Edit succesful");
 				PickTypeUI pickTypeUI = new PickTypeUI(user);
 				pickTypeUI.run();
 				dispose();

@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -55,21 +56,23 @@ public class LoginUI extends JFrame {
 		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		titleLabel.setForeground(Color.WHITE);
 		
-		loginLabel = new JLabel("Your name: ");
+		loginLabel = new JLabel("Username: ");
+		
 		nameTextfield = new JTextField(15);
-		passwordLabel = new JLabel("  Password: ");
+		passwordLabel = new JLabel("Password: ");
 		passwordTextfield = new JPasswordField(15);
 		loginButton = new JButton("Login");
+		registerButton = new JButton("Register");
+		registerButton.setBorderPainted(false);
+		loginButton.setBorderPainted(false);
 		loginButton.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				connectDatabase();
 			}
 		});
-		registerButton = new JButton("Register now!!");
+		
 		registerButton.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				InformationUI informationUI = new InformationUI();
@@ -115,6 +118,7 @@ public class LoginUI extends JFrame {
 
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM USER;");
+			boolean checkValidAcc = false;
 			while (rs.next()) {
 				String name = rs.getString("name");
 				String password = rs.getString("password");
@@ -130,9 +134,12 @@ public class LoginUI extends JFrame {
 					ui.run();
 					dispose();
 					System.out.println("Login successfully");
+					checkValidAcc = true;
 					break;
 				}
 			}
+			if (!checkValidAcc)
+				JOptionPane.showMessageDialog(null, "Invalid username or password");
 			rs.close();
 			stmt.close();
 			c.close();

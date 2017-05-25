@@ -57,7 +57,7 @@ public class InformationUI extends JFrame {
 	 */
 	private void initComponents() {
 		ageLabel = new JLabel("Age: ");
-		nameLabel = new JLabel("Name: ");
+		nameLabel = new JLabel("Username: ");
 		genderLabel = new JLabel("Gender: ");
 		activityLabel = new JLabel("Activity: ");
 		weightLabel = new JLabel("Weight: ");

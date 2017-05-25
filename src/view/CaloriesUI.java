@@ -97,7 +97,7 @@ public class CaloriesUI extends JFrame {
 		caloriesNeedLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		backBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		food = new Food();
+		food = Food.getInstance();
 		try {
 			food.putFood();
 			food.putThaiFood();

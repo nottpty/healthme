@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.border.Border;
 
 import absi.Absi;
 import user.User;
@@ -18,6 +19,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Insets;
 import java.awt.Toolkit;
 
 /**
@@ -33,7 +36,7 @@ public class PickTypeUI extends JFrame {
 	private User user;
 	private JProgressBar caloriesBar;
 	private JLabel nameLabel, ageLabel, genderLabel, todayCaloriesLabel, weightLabel, heightLabel;
-	private JButton caloriesBtn, absiBtn, editUserBtn;
+	private JButton caloriesBtn, absiBtn, editUserBtn, logOutBtn;
 	
 	/**
 	 * Create UI
@@ -68,6 +71,7 @@ public class PickTypeUI extends JFrame {
 		absiBtn = new JButton("ABSI");
 		absiBtn.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		editUserBtn = new JButton("EDIT USER");
+		logOutBtn = new JButton("Log out");
 		
 		nameLabel = new JLabel();
 		ageLabel = new JLabel();
@@ -105,8 +109,8 @@ public class PickTypeUI extends JFrame {
 		ageLabel.setText("Age: " + user.getAge());
 		genderLabel.setText("Gender: " + user.getGender());
 		todayCaloriesLabel.setText("Calories: " + (int)user.getCalories() + "/" + (int)user.getfinalCalories());
-		weightLabel.setText("Weight: " + user.getWeight());
-		heightLabel.setText("Height: " + user.getHeight());
+		weightLabel.setText("Weight: " + (int)user.getWeight() + " Kg");
+		heightLabel.setText("Height: " + (int)user.getHeight() + " Cm");
 		
 		// Add listener
 		caloriesBtn.addActionListener(new ActionListener() {	
@@ -138,6 +142,14 @@ public class PickTypeUI extends JFrame {
 			}
 		});
 		
+		logOutBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				LoginUI login = new LoginUI();
+				login.run();
+				dispose();
+			}
+		});
 		northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
 		labelPanel.add(nameLabel);
 		labelPanel.add(ageLabel);
@@ -150,6 +162,7 @@ public class PickTypeUI extends JFrame {
 		northPanel.add(progressPanel);
 		centerPanel.add(absiBtn);
 		centerPanel.add(caloriesBtn);
+		southPanel.add(logOutBtn);
 		southPanel.add(editUserBtn);
 		
 		this.setLayout(new BorderLayout());

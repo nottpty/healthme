@@ -72,16 +72,22 @@ public class AbsiUI extends JFrame implements Observer {
 	public void initComponents() {
 		maleRadioButton = new JRadioButton("Male");
 		maleRadioButton.setSelected(true);
+		maleRadioButton.setBackground(Color.WHITE);
 		femaleRadioButton = new JRadioButton("Female");
+		femaleRadioButton.setBackground(Color.WHITE);
 		genderLabel = new JLabel("Gender: ");
 		ageLabel = new JLabel("Age: ");
 		heightLabel = new JLabel("Height (cm): ");
 		weightLabel = new JLabel("Weight (kg): ");
 		waistCircumLabel = new JLabel("Waist circumference (cm): ");
 		ageTextField = new JTextField(3);
+		ageTextField.setText(user.getAge()+"");
 		heightTextField = new JTextField(3);
+		heightTextField.setText(user.getHeight()+"");
 		weightTextField = new JTextField(3);
+		weightTextField.setText(user.getWeight()+"");
 		waistCircumTextField = new JTextField(3);
+		waistCircumTextField.setText(user.getWaist()+"");
 		calculateButton = new JButton("Calculate Now!");
 		backBtn = new JButton("Back");
 		resultLabel = new JLabel("", (int) CENTER_ALIGNMENT);
@@ -116,6 +122,7 @@ public class AbsiUI extends JFrame implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				femaleRadioButton.setSelected(false);
+				maleRadioButton.setSelected(true);
 			}
 		});
 		femaleRadioButton.addActionListener(new ActionListener() {
@@ -123,6 +130,7 @@ public class AbsiUI extends JFrame implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				maleRadioButton.setSelected(false);
+				femaleRadioButton.setSelected(true);
 			}
 		});
 		calculateButton.addActionListener(new ActionListener() {
