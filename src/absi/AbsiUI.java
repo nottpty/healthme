@@ -88,12 +88,19 @@ public class AbsiUI extends JFrame implements Observer {
 		resultLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
 		Panel panel1 = new Panel(new FlowLayout());
+		panel1.setBackground(Color.WHITE);
 		Panel panel2 = new Panel(new FlowLayout((int) LEFT_ALIGNMENT));
+		panel2.setBackground(Color.WHITE);
 		Panel panel3 = new Panel(new FlowLayout((int) LEFT_ALIGNMENT));
+		panel3.setBackground(Color.WHITE);
 		Panel panel4 = new Panel(new FlowLayout((int) LEFT_ALIGNMENT));
+		panel4.setBackground(Color.WHITE);
 		Panel panel5 = new Panel(new FlowLayout((int) LEFT_ALIGNMENT));
+		panel5.setBackground(Color.WHITE);
 		resultPanel = new Panel(new BorderLayout());
+		resultPanel.setBackground(Color.WHITE);
 		Panel panel7 = new Panel(new FlowLayout());
+		panel7.setBackground(Color.WHITE);
 		resultPanel.setBackground(Color.WHITE);
 		this.setLayout(new GridLayout(7, 1));
 		backBtn.addActionListener(new ActionListener() {

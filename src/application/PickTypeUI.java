@@ -53,10 +53,15 @@ public class PickTypeUI extends JFrame {
 	
 	private void initComponents() {
 		JPanel labelPanel = new JPanel();
+		labelPanel.setBackground(Color.WHITE);
 		JPanel northPanel = new JPanel();
+		northPanel.setBackground(Color.WHITE);
 		JPanel progressPanel = new JPanel();
+		progressPanel.setBackground(Color.WHITE);
 		JPanel centerPanel = new JPanel();
+		centerPanel.setBackground(Color.WHITE);
 		JPanel southPanel = new JPanel();
+		southPanel.setBackground(Color.WHITE);
 		
 		caloriesBtn = new JButton("CALORIES");
 		caloriesBtn.setFont(new Font("Tahoma", Font.PLAIN, 50));

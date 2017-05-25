@@ -1,5 +1,6 @@
 package calories;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -146,8 +147,11 @@ public class CaloriesUI extends JFrame {
 		
 		panel = new JPanel();
 		JPanel foodListPanel = new JPanel();
+		foodListPanel.setBackground(Color.WHITE);
 		JPanel thaifoodListPanel = new JPanel();
+		thaifoodListPanel.setBackground(Color.WHITE);
 		JPanel textAreaPanel = new JPanel();
+		textAreaPanel.setBackground(Color.WHITE);
 		JScrollPane leftscroll;
 		JScrollPane rightscroll;
 		

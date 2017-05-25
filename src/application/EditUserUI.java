@@ -1,4 +1,5 @@
 package application;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -98,9 +99,13 @@ public class EditUserUI extends JFrame {
 		});
 		
 		JPanel namePanel = new JPanel();
+		namePanel.setBackground(Color.WHITE);
 		JPanel weightPanel = new JPanel();
+		weightPanel.setBackground(Color.WHITE);
 		JPanel genderPanel = new JPanel();
+		genderPanel.setBackground(Color.WHITE);
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		
 		namePanel.add(nameLabel);
@@ -112,11 +117,13 @@ public class EditUserUI extends JFrame {
 		
 		
 		JPanel agePanel = new JPanel();
+		agePanel.setBackground(Color.WHITE);
 		namePanel.add(agePanel);
 		agePanel.add(ageLabel);
 		agePanel.add(ageTxt);
 		
 		JPanel heightPanel = new JPanel();
+		heightPanel.setBackground(Color.WHITE);
 		weightPanel.add(heightPanel);
 		heightPanel.add(heightLabel);
 		heightPanel.add(heightTxt);
@@ -125,8 +132,6 @@ public class EditUserUI extends JFrame {
 		panel.add(genderPanel);
 		panel.add(saveBtn);
 		this.getContentPane().add(panel);
-		
-		
 		
 	}
 	

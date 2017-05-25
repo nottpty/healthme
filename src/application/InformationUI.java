@@ -111,16 +111,35 @@ public class InformationUI extends JFrame {
 				dispose();
 			}
 		});
+		
+		backBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				LoginUI loginUI = new LoginUI();
+				loginUI.run();
+				dispose();
+			}
+		});
 
 		JPanel panel0 = new JPanel();
+		panel0.setBackground(Color.WHITE);
 		JPanel panel1 = new JPanel();
+		panel1.setBackground(Color.WHITE);
 		JPanel panel2 = new JPanel();
+		panel2.setBackground(Color.WHITE);
 		JPanel panel3 = new JPanel();
+		panel3.setBackground(Color.WHITE);
 		JPanel panel4 = new JPanel();
+		panel4.setBackground(Color.WHITE);
 		JPanel panel5 = new JPanel();
+		panel5.setBackground(Color.WHITE);
 		JPanel panel6 = new JPanel();
+		panel6.setBackground(Color.WHITE);
 		JPanel panel7 = new JPanel();
+		panel7.setBackground(Color.WHITE);
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 
 		panel0.add(nameLabel);
 		panel0.add(nameTxt);
