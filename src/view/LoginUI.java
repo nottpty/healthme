@@ -63,8 +63,6 @@ public class LoginUI extends JFrame {
 		passwordTextfield = new JPasswordField(15);
 		loginButton = new JButton("Login");
 		registerButton = new JButton("Register");
-		registerButton.setBorderPainted(false);
-		loginButton.setBorderPainted(false);
 		loginButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

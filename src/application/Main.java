@@ -43,7 +43,7 @@ public class Main {
 			c.close();
 			System.out.println("Table created successfully");
 		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.err.println("table USER already exists");
 		}
 	}
 }

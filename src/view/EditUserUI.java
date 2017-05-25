@@ -143,6 +143,7 @@ public class EditUserUI extends JFrame {
 		
 		JPanel heightPanel = new JPanel();
 		JPanel buttonPanel = new JPanel();
+		buttonPanel.setBackground(Color.WHITE);
 		heightPanel.setBackground(Color.WHITE);
 		weightPanel.add(heightPanel);
 		heightPanel.add(heightLabel);

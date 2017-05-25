@@ -30,7 +30,7 @@ SQLite
 ```
 HealthMe.jar
 ```
-2. Compile by IDE(i.e. eclipse)
+2. Compile by IDE(i.e. eclipse) - Add external library sqlite-jdbc-3.18.0.jar first.
 ```
 Main.java
 ```
