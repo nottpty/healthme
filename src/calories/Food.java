@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -43,7 +44,7 @@ public class Food {
 	 */
 	public void putFood() throws IOException {
 		InputStream inputStream = new FileInputStream("src/calories/food.txt");
-		InputStreamReader reader = new InputStreamReader(inputStream);
+		InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
 		BufferedReader br = new BufferedReader(reader);
 
 		String line;
@@ -72,7 +73,7 @@ public class Food {
 	 */
 	public void putThaiFood() throws IOException {
 		InputStream inputStream = new FileInputStream("src/calories/Thaifood.txt");
-		InputStreamReader reader = new InputStreamReader(inputStream);
+		InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
 		BufferedReader br = new BufferedReader(reader);
 
 		String line;
