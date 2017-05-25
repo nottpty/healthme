@@ -1,4 +1,4 @@
-package calories;
+package view;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -20,7 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
-import application.PickTypeUI;
+import calories.Food;
 import user.User;
 
 /**
@@ -188,6 +188,9 @@ public class CaloriesUI extends JFrame {
 		this.add(panel);
 	}
 
+	/**
+	 * Show user interface of this frame.
+	 */
 	public void run() {
 		this.setVisible(true);
 	}

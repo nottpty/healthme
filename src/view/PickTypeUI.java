@@ -1,4 +1,4 @@
-package application;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,8 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 import absi.Absi;
-import absi.AbsiUI;
-import calories.CaloriesUI;
 import javafx.scene.shape.Box;
 import user.User;
 
@@ -51,6 +49,9 @@ public class PickTypeUI extends JFrame {
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 	}
 	
+	/**
+	 * To initial all components in user interface.
+	 */
 	private void initComponents() {
 		JPanel labelPanel = new JPanel();
 		labelPanel.setBackground(Color.WHITE);
@@ -80,16 +81,6 @@ public class PickTypeUI extends JFrame {
 		caloriesBar.setMaximumSize(new Dimension(0, (int)user.getfinalCalories()));
 		caloriesBar.setValue((int)user.getCalories());
 		caloriesBar.setStringPainted(true);
-		
-//		caloriesBar.setPreferredSize(new Dimension(700, 50));
-//		nameLabel.setPreferredSize(new Dimension(120, 100));
-//		ageLabel.setPreferredSize(new Dimension(75, 100));
-//		genderLabel.setPreferredSize(new Dimension(100, 100));
-//		todayCaloriesLabel.setPreferredSize(new Dimension(150, 100));
-//		weightLabel.setPreferredSize(new Dimension(100, 100));
-//		heightLabel.setPreferredSize(new Dimension(100, 100));
-//		caloriesBtn.setPreferredSize(new Dimension(400, 200));
-//		absiBtn.setPreferredSize(new Dimension(350, 200));
 		
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));	
 		ageLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -165,6 +156,9 @@ public class PickTypeUI extends JFrame {
 		this.pack();
 	}
 	
+	/**
+	 * To show user interface of this frame.
+	 */
 	public void run() {
 		this.setVisible(true);
 	}

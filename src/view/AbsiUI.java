@@ -1,4 +1,4 @@
-package absi;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,7 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import application.PickTypeUI;
+import absi.Absi;
 import user.User;
 
 /**

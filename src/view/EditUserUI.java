@@ -1,4 +1,4 @@
-package application;
+package view;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -46,6 +46,9 @@ public class EditUserUI extends JFrame {
 		this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 	}
 	
+	/**
+	 * To initial all components of user interface(UI).
+	 */
 	private void initComponents() {
 		nameLabel = new JLabel();
 		weightLabel = new JLabel();
@@ -135,6 +138,9 @@ public class EditUserUI extends JFrame {
 		
 	}
 	
+	/**
+	 * Update data in database.
+	 */
 	public void updateDatabase() {
 		Connection c = null;
 	    Statement stmt = null;
@@ -174,6 +180,9 @@ public class EditUserUI extends JFrame {
 	    System.out.println("Operation done successfully");
 	}
 	
+	/**
+	 * Show user interface of this frame.
+	 */
 	public void run() {
 		this.setVisible(true);
 	}

@@ -1,4 +1,4 @@
-package application;
+package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -52,6 +52,9 @@ public class InformationUI extends JFrame {
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 	}
 
+	/**
+	 * To initial all components in user interface(UI).
+	 */
 	private void initComponents() {
 		ageLabel = new JLabel("Age: ");
 		nameLabel = new JLabel("Name: ");
@@ -104,7 +107,7 @@ public class InformationUI extends JFrame {
 
 				// Create User
 				user = new User(name, gender, age, weight, height, activity);
-				insertToDatabase(user);
+				insertToDatabase();
 				user.caloriesNeeded();
 				PickTypeUI ui = new PickTypeUI(user);
 				ui.run();
@@ -170,11 +173,17 @@ public class InformationUI extends JFrame {
 		this.add(panel);
 	}
 
+	/**
+	 * To show user interface of this frame.
+	 */
 	public void run() {
 		this.setVisible(true);
 	}
 
-	public void insertToDatabase(User user) {
+	/**
+	 * Insert information of user to database.
+	 */
+	public void insertToDatabase() {
 		Connection c = null;
 		Statement stmt = null;
 		try {

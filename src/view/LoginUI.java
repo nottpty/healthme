@@ -1,6 +1,5 @@
-package application;
+package view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -22,6 +21,13 @@ import user.User;
 
 import java.sql.*;
 
+/**
+ * Login page check account and password of user to login. If user doesn't has
+ * account, user can register account by click at register button.
+ * 
+ * @author Patinya Yongyai
+ *
+ */
 public class LoginUI extends JFrame {
 	private JLabel loginLabel, passwordLabel, titleLabel;
 	private JTextField nameTextfield;
@@ -29,6 +35,9 @@ public class LoginUI extends JFrame {
 	private JButton loginButton, registerButton;
 	private User user;
 
+	/**
+	 * To create user interface of login.
+	 */
 	public LoginUI() {
 		this.setTitle("HealthMe Login");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -37,18 +46,21 @@ public class LoginUI extends JFrame {
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 	}
 
+	/**
+	 * To initial all components of user interface(UI).
+	 */
 	public void initComponents() {
-		this.setLayout(new GridLayout(4,2));
+		this.setLayout(new GridLayout(4, 2));
 		titleLabel = new JLabel("HealthMe", SwingConstants.CENTER);
 		titleLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
-//		titleLabel.setBounds(0, 0, 784, 242);
+		// titleLabel.setBounds(0, 0, 784, 242);
 		loginLabel = new JLabel("Your name: ");
 		nameTextfield = new JTextField(15);
 		passwordLabel = new JLabel("  Password: ");
 		passwordTextfield = new JPasswordField(15);
 		loginButton = new JButton("Login");
 		loginButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				connectDatabase();
@@ -56,7 +68,7 @@ public class LoginUI extends JFrame {
 		});
 		registerButton = new JButton("Register now!!");
 		registerButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				InformationUI informationUI = new InformationUI();
@@ -64,7 +76,7 @@ public class LoginUI extends JFrame {
 				dispose();
 			}
 		});
-		
+
 		Panel panel0 = new Panel(new FlowLayout());
 		panel0.setBackground(Color.WHITE);
 		Panel panel1 = new Panel(new FlowLayout());
@@ -87,6 +99,10 @@ public class LoginUI extends JFrame {
 		this.pack();
 	}
 
+	/**
+	 * To check account and password of user. If input of user correct,
+	 * application will show pick type page.
+	 */
 	public void connectDatabase() {
 		Connection c = null;
 		Statement stmt = null;
@@ -106,8 +122,6 @@ public class LoginUI extends JFrame {
 				int weight = rs.getInt("weight");
 				int height = rs.getInt("height");
 				int age = rs.getInt("age");
-				System.out.println("NAME = " + name);
-				System.out.println("PASSWORD = " + password);
 				if (passwordTextfield.getText().equals(password) && name.equals(nameTextfield.getText())) {
 					user = new User(name, gender, age, weight, height, activity);
 					user.caloriesNeeded();
@@ -126,6 +140,9 @@ public class LoginUI extends JFrame {
 		}
 	}
 
+	/**
+	 * To show user interface of this frame.
+	 */
 	public void run() {
 		this.setVisible(true);
 	}

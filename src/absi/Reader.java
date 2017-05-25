@@ -63,6 +63,9 @@ public class Reader implements Iterator<String[]> {
 		throw new NoSuchElementException();
 	}
 	
+	/**
+	 * Closes the stream.
+	 */
 	public void close() {
 		try {
 			bufferReader.close();

@@ -1,4 +1,4 @@
-package application;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -62,6 +62,9 @@ public class StartUI extends JFrame {
 		getContentPane().add(button);
 	}
 
+	/**
+	 * To show user interface of this frame.
+	 */
 	public void run() {
 		this.setVisible(true);
 	}
