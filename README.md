@@ -10,9 +10,11 @@
 ## Calories
   It's very important that people must know what they eat and that was enough per day or not. It is very hard to calculate the accurate calories needed per day if the number of input are too small. So, We let user to put their age, gender, height, weight and their activity in that day. Activity is a something that you feel doing activity in that day, divide in 3 parts.
 
-  Sedentary activity - Doesn't do much in that day (Ex. At home doesn't do anything that use energy)
-  Moderate activity - Doing some of the activities that use energy.
-  Active activity - Doing many activities that use a lot of energy (Ex. Play sports, doing exam)
+  Sedentary Activity - Doesn't do much in that day (Ex. At home doesn't do anything that use energy)
+  Lightly Active - Do some activities and have sometimes resting.
+  Moderately Active - Doing some of the activities that use energy.
+  Very Active - Doing many activities that use a lot of energy (Ex. Play sports, doing exam) about 4 days per week.
+  Extremely Active - Doing many activities like playing sport 5-7 days per week
 
 ## ABSI
   ABSI is similar to the BMI index that we usually test when we study PE (Physical education). But ABSI is more accurate, specific than BMI. The result will show the mortality risk of that person.
