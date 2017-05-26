@@ -51,6 +51,12 @@ HealthMe.jar
 Main.java
 ```
 
+## Design Pattern
+```
+Singleton Pattern
+Observer Pattern
+Iterator Pattern
+```
 
 ## Authors
 * **Patinya Yongyai**
